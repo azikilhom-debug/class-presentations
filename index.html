@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f3f2f2">
+<meta name="description" content="STAT201 Statistics course hub at Tashkent International University">
+<title>STAT201 Statistics · TIU</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ds-modernist.css">
+<style>
+  body { margin: 0; background: #f3f2f2; color: #201e1d; font-family: "Archivo", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #ae1800; text-decoration: none; }
+  a:hover { color: #ec3013; }
+  a:focus-visible { outline: 2px solid #ec3013; outline-offset: 2px; }
+  .coming-soon { display: block; padding: 18px; background: #e5e2e2; color: #605d5d; cursor: not-allowed; }
+  @media (max-width: 760px) {
+    .course-hero, .course-layout { grid-template-columns: 1fr !important; }
+    .course-hero > div:first-child, .course-layout > div:first-child { border-right: 0 !important; }
+    header, footer { padding-left: 18px !important; padding-right: 18px !important; }
+    .course-hero > div:first-child { padding: 32px 18px 28px !important; }
+    article { padding-left: 18px !important; padding-right: 18px !important; }
+  }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #f3f2f2;">
+
+  <header style="display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; justify-content: space-between; padding: 20px 32px; border-bottom: 2px solid #201e1d;">
+    <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px;">
+      <span style="font-size: 20px; font-weight: 900; letter-spacing: -0.02em;">TIU</span>
+      <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #605d5d;">Tashkent International University</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #605d5d;">
+      <span>STAT201</span>
+      <span>Semester 3</span>
+      <span>ECTS 5</span>
+    </div>
+  </header>
+
+  <section class="course-hero" style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
+    <div style="padding: 48px 32px 40px; border-right: 2px solid #201e1d;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ec3013; margin-bottom: 20px;">Course hub · Autumn 2026</div>
+      <h1 style="margin: 0 0 20px; font-size: clamp(48px, 7vw, 92px); font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; text-transform: uppercase;">Statistics</h1>
+      <p style="margin: 0; max-width: 54ch; font-size: 17px; line-height: 1.5; color: #444141; text-wrap: pretty;">From describing a dataset to testing a hypothesis. Fifteen weeks of descriptive statistics, probability, inference and regression for economics, finance and management students.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+        <a href="week-1-class-1.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; background: #ec3013; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Open this week's class →</a>
+        <a href="#syllabus" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; border: 2px solid #201e1d; color: #201e1d; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Syllabus details</a>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr;">
+      <div style="padding: 24px; border-bottom: 2px solid #201e1d; border-right: 2px solid #201e1d;">
+        <div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">150</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Total hours</div>
+      </div>
+      <div style="padding: 24px; border-bottom: 2px solid #201e1d;">
+        <div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">15</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Weeks</div>
+      </div>
+      <div style="padding: 24px; border-bottom: 2px solid #201e1d; border-right: 2px solid #201e1d;">
+        <div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">60</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Contact hours</div>
+      </div>
+      <div style="padding: 24px; border-bottom: 2px solid #201e1d;">
+        <div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">90</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Self-study</div>
+      </div>
+      <div style="padding: 24px; border-right: 2px solid #201e1d;">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d;">Consultations</div>
+        <div style="font-size: 20px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Thursday<br>14:00 — 18:00</div>
+      </div>
+      <div style="padding: 24px;">
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d;">Lecturers</div>
+        <div style="font-size: 15px; font-weight: 700; margin-top: 8px; line-height: 1.4;">Sh. Q. Xannayev, PhD<br>S. Q. Shonazarov</div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 18px 32px; background: #ec3013; color: #fff; border-bottom: 2px solid #201e1d;">
+    <div style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;">
+      <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Attendance rule</span>
+      <span style="font-size: 16px; font-weight: 600;">Miss 20 of 60 contact hours (33%) without cause and the course is recorded as Fail.</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="width: 180px; height: 12px; background: rgba(255,255,255,0.35);">
+        <div style="height: 12px; background: #fff; width: {{ missedPct }};"></div>
+      </div>
+      <span style="font-size: 15px; font-weight: 800; white-space: nowrap;">{{ missedLabel }}</span>
+    </div>
+  </div>
+
+  <section class="course-layout" style="display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
+
+    <div style="border-right: 2px solid #201e1d;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 22px 32px; border-bottom: 2px solid #201e1d;">
+        <h2 style="margin: 0; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Class materials</h2>
+        <span style="font-size: 13px; font-weight: 600; color: #605d5d;">2 classes per week · 2h + 2h</span>
+      </div>
+
+      <article style="padding: 28px 32px; border-bottom: 2px solid #201e1d;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px;">
+          <span style="padding: 5px 10px; background: #201e1d; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">WEEK 01</span>
+          <span style="padding: 5px 10px; background: #ffe0d9; color: #7c1405; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">{{ week1Status }}</span>
+          <span style="font-size: 13px; font-weight: 600; color: #605d5d;">4 academic hours · 7h self-study</span>
+        </div>
+        <h3 style="margin: 0 0 10px; font-size: clamp(26px, 3vw, 36px); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em;">Data, descriptive statistics and visualization</h3>
+        <p style="margin: 0 0 22px; max-width: 62ch; font-size: 16px; line-height: 1.5; color: #444141;">Types of data; measures of central tendency and spread; skewness; histograms, box plots, scatter plots; what makes a chart honest.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: #201e1d; padding: 2px;">
+          <a href="week-1-class-1.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+            <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 1</div>
+            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Data types, centre and spread</div>
+            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + exercises</div>
+          </a>
+          <a href="week-1-class-2.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+            <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 2</div>
+            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Shape, outliers and charts</div>
+            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + chart lab</div>
+          </a>
+        </div>
+      </article>
+
+      <article style="padding: 28px 32px; border-bottom: 2px solid #201e1d;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px;">
+          <span style="padding: 5px 10px; background: #201e1d; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">WEEK 02</span>
+          <span style="padding: 5px 10px; background: #ffe0d9; color: #7c1405; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">{{ week2Status }}</span>
+          <span style="font-size: 13px; font-weight: 600; color: #605d5d;">4 academic hours · 7h self-study</span>
+        </div>
+        <h3 style="margin: 0 0 10px; font-size: clamp(26px, 3vw, 36px); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em;">Foundations of probability theory</h3>
+        <p style="margin: 0 0 22px; max-width: 62ch; font-size: 16px; line-height: 1.5; color: #444141;">Sample space and events; Kolmogorov's axioms; addition and multiplication rules; combinatorics; independence.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: #201e1d; padding: 2px;">
+          <a href="week-2-class-1.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+            <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 1</div>
+            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Events, axioms and the rules</div>
+            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + exercises</div>
+          </a>
+          <div class="coming-soon" aria-disabled="true">
+            <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 2</div>
+            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Counting and independence</div>
+            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + problem lab</div>
+            <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 10px;">Coming soon</div>
+          </div>
+        </div>
+      </article>
+
+      <div style="padding: 24px 32px; border-bottom: 2px solid #201e1d;">
+        <h2 style="margin: 0 0 4px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Rest of the semester</h2>
+        <p style="margin: 0; font-size: 13px; font-weight: 600; color: #605d5d;">Slides published the week before each class.</p>
+      </div>
+      <sc-for list="{{ upcoming }}" as="w" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) auto; gap: 20px; align-items: center; padding: 14px 32px; border-bottom: 2px solid rgba(32,30,29,0.15);">
+          <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; color: #7d7979;">{{ w.no }}</span>
+          <span style="font-size: 16px; font-weight: 600; color: #444141;">{{ w.title }}</span>
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9b9797;">{{ w.tag }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div>
+      <div style="padding: 22px 28px; border-bottom: 2px solid #201e1d; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <h2 style="margin: 0; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">News</h2>
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ec3013;">{{ newsCount }} new</span>
+      </div>
+      <sc-for list="{{ news }}" as="n" hint-placeholder-count="4">
+        <article style="padding: 20px 28px; border-bottom: 2px solid rgba(32,30,29,0.15);">
+          <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">{{ n.tag }}</span>
+            <span style="font-size: 12px; font-weight: 600; color: #7d7979;">{{ n.date }}</span>
+          </div>
+          <h3 style="margin: 0 0 6px; font-size: 17px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em;">{{ n.title }}</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #444141;">{{ n.body }}</p>
+        </article>
+      </sc-for>
+
+      <div style="padding: 22px 28px; border-bottom: 2px solid #201e1d; border-top: 2px solid #201e1d;">
+        <h2 style="margin: 0; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Deadlines</h2>
+      </div>
+      <sc-for list="{{ deadlines }}" as="d" hint-placeholder-count="4">
+        <div style="display: flex; gap: 16px; align-items: flex-start; padding: 16px 28px; border-bottom: 2px solid rgba(32,30,29,0.15);">
+          <span style="min-width: 62px; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; color: #ec3013;">{{ d.when }}</span>
+          <div>
+            <div style="font-size: 16px; font-weight: 700; line-height: 1.3;">{{ d.what }}</div>
+            <div style="font-size: 13px; font-weight: 600; color: #7d7979; margin-top: 4px;">{{ d.note }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="syllabus" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); border-bottom: 2px solid #201e1d;">
+    <div style="padding: 28px 32px; border-right: 2px solid #201e1d;">
+      <h2 style="margin: 0 0 22px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Assessment</h2>
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Attendance and participation</span><span>15%</span></div>
+          <div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 15%; background: #201e1d;"></div></div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Self-study and assignments</span><span>25%</span></div>
+          <div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 25%; background: #201e1d;"></div></div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Midterm exam · week 8</span><span>20%</span></div>
+          <div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 20%; background: #201e1d;"></div></div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Final exam · week 16</span><span>40%</span></div>
+          <div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 40%; background: #ec3013;"></div></div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-top: 26px; background: #201e1d; padding: 2px;">
+        <div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">A+</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">95+</div></div>
+        <div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">A</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">90</div></div>
+        <div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">B+</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">80</div></div>
+        <div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">B</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">70</div></div>
+        <div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">C+</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">65</div></div>
+        <div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">C</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">60</div></div>
+        <div style="background: #ffe0d9; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900; color: #7c1405;">F</div><div style="font-size: 11px; font-weight: 600; color: #7c1405;">0–59</div></div>
+      </div>
+    </div>
+
+    <div style="padding: 28px 32px; border-right: 2px solid #201e1d;">
+      <h2 style="margin: 0 0 8px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Self-study · 7 hours per topic</h2>
+      <p style="margin: 0 0 20px; font-size: 14px; font-weight: 600; color: #605d5d;">Same three tasks for each of the ten graded topics, plus 20 hours of exam preparation. 90 hours in total.</p>
+      <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+        <div style="background: #f3f2f2; padding: 16px 18px; display: flex; gap: 16px;"><span style="font-size: 14px; font-weight: 900; color: #ec3013;">A</span><span style="font-size: 16px; font-weight: 600;">Study the theory for the topic</span></div>
+        <div style="background: #f3f2f2; padding: 16px 18px; display: flex; gap: 16px;"><span style="font-size: 14px; font-weight: 900; color: #ec3013;">B</span><span style="font-size: 16px; font-weight: 600;">Complete the practical problem set</span></div>
+        <div style="background: #f3f2f2; padding: 16px 18px; display: flex; gap: 16px;"><span style="font-size: 14px; font-weight: 900; color: #ec3013;">C</span><span style="font-size: 16px; font-weight: 600;">Advance your own data project</span></div>
+      </div>
+      <p style="margin: 20px 0 0; font-size: 14px; line-height: 1.5; color: #444141;">The data project runs all semester: one question, one dataset, one written conclusion. Submitted as a presentation or a short visual report.</p>
+    </div>
+
+    <div style="padding: 28px 32px;">
+      <h2 style="margin: 0 0 20px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Reading</h2>
+      <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013; margin-bottom: 12px;">Core</div>
+      <ol style="margin: 0 0 24px; padding-left: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <li style="font-size: 15px; line-height: 1.45;"><strong>Newbold, Carlson &amp; Thorne</strong> — Statistics for Business and Economics, 10th ed., Pearson, 2023</li>
+        <li style="font-size: 15px; line-height: 1.45;"><strong>Illowsky &amp; Dean</strong> — Introductory Statistics 2e, OpenStax, 2023 <em>(free)</em></li>
+        <li style="font-size: 15px; line-height: 1.45;"><strong>James, Witten, Hastie &amp; Tibshirani</strong> — An Introduction to Statistical Learning with R, Springer, 2023</li>
+      </ol>
+      <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013; margin-bottom: 12px;">Further</div>
+      <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; color: #444141;">
+        <li style="font-size: 14px; line-height: 1.4;">Wooldridge — Introductory Econometrics, 7th ed.</li>
+        <li style="font-size: 14px; line-height: 1.4;">Freedman, Pisani &amp; Purves — Statistics, 4th ed.</li>
+        <li style="font-size: 14px; line-height: 1.4;">Diez, Barr &amp; Çetinkaya-Rundel — OpenIntro Statistics</li>
+        <li style="font-size: 14px; line-height: 1.4;">Stock &amp; Watson — Introduction to Econometrics, 4th ed.</li>
+        <li style="font-size: 14px; line-height: 1.4;">Wasserman — All of Statistics</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; padding: 24px 32px; font-size: 13px; font-weight: 600; color: #605d5d;">
+    <span>STAT201 · Syllabus approved by the TIU Council, minute No. 16 of 25 July 2026</span>
+    <span>Next course: ECMT301 Econometrics</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;currentWeek&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1,&quot;min&quot;:1,&quot;max&quot;:15,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Course state&quot;},&quot;hoursMissed&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:20,&quot;unit&quot;:&quot;h&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Course state&quot;},&quot;showUpcomingWeeks&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const current = this.props.currentWeek ?? 1;
+    const missed = this.props.hoursMissed ?? 2;
+    const rest = [
+      ["03", "Conditional probability and Bayes' theorem"],
+      ["04", "Random variables and discrete distributions"],
+      ["05", "Continuous and normal distributions"],
+      ["06", "Joint distributions, covariance, correlation"],
+      ["07", "Sampling distributions and the CLT"],
+      ["08", "Revision and midterm exam"],
+      ["09", "Point and interval estimation"],
+      ["10", "Hypothesis testing I — means and proportions"],
+      ["11", "Hypothesis testing II — two samples and chi-square"],
+      ["12", "Simple linear regression"],
+      ["13", "Inference in regression; correlation vs causation"],
+      ["14", "Data project lab and statistical communication"],
+      ["15", "Synthesis and exam preparation"]
+    ];
+    const upcoming = rest.map(([no, title]) => ({
+      no: "Week " + no,
+      title,
+      tag: no === "08" ? "Midterm" : no === "15" ? "Revision" : "Upcoming"
+    }));
+    const news = [
+      { tag: "Announcement", date: "7 Sep", title: "Week 1 slides are live", body: "Both classes are published. Bring a laptop or a phone with a spreadsheet app to class 2 — we build the charts together." },
+      { tag: "Data project", date: "7 Sep", title: "Pick your dataset by week 3", body: "One question, one dataset, one conclusion. Open data from stat.uz, the Central Bank or any public source is fine." },
+      { tag: "Reminder", date: "4 Sep", title: "Consultations start this Thursday", body: "Thursday 14:00–18:00, no appointment needed. Best used before a problem set is due, not after." },
+      { tag: "Exam", date: "1 Sep", title: "Midterm format confirmed", body: "Week 8, written case. Part A: 15 short questions on probability and distributions. Part B: 3 computational problems. Tables and calculators allowed." }
+    ];
+    const deadlines = [
+      { when: "Week 2", what: "Problem set 1 — descriptive statistics", note: "Submitted at the start of class 1" },
+      { when: "Week 3", what: "Data project — question and dataset", note: "One paragraph plus a link" },
+      { when: "Week 8", what: "Midterm exam", note: "Written case, 2 academic hours" },
+      { when: "Week 14", what: "Data project — final submission", note: "Presentation or visual report" },
+      { when: "Week 16", what: "Final exam", note: "Parts A, B and C · 40% of the grade" }
+    ];
+    return {
+      upcoming: this.props.showUpcomingWeeks === false ? [] : upcoming,
+      news, deadlines,
+      newsCount: news.length,
+      week1Status: current === 1 ? "In class now" : current > 1 ? "Completed" : "Published",
+      week2Status: current === 2 ? "In class now" : current > 2 ? "Completed" : "Published",
+      missedPct: Math.min(100, Math.round((missed / 20) * 100)) + "%",
+      missedLabel: missed + " / 20 h missed"
+    };
+  }
+}
+</script>
+<script>
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f3f2f2">
+<title>STAT201 · Week 1 · Class 2</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #201e1d; font-family: "Archivo", system-ui, sans-serif; }
+  a { color: #ae1800; text-decoration: none; }
+  a:hover { color: #ec3013; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Title" data-screen-label="01" data-speaker-notes="Open with the promise: by the end of this class the word 'outlier' stops being an opinion and becomes a calculation." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em;">STAT201 · STATISTICS</span>
+      <span style="font-size: 26px; font-weight: 700; letter-spacing: 0.1em; color: #605d5d;">WEEK 1 · CLASS 2</span>
+    </div>
+    <div>
+      <div style="font-size: 30px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #ec3013; margin-bottom: 36px;">Topic 1 — Descriptive statistics</div>
+      <h1 style="margin: 0; font-size: 148px; font-weight: 900; line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; max-width: 24ch;">Shape, outliers and charts</h1>
+      <p style="margin: 44px 0 0; font-size: 38px; font-weight: 500; line-height: 1.35; color: #444141; max-width: 48ch;">Three charts do almost all the work in applied statistics. Today we build all three from the same twelve numbers.</p>
+    </div>
+    <div style="display: flex; gap: 72px; border-top: 2px solid #201e1d; padding-top: 24px; font-size: 26px; font-weight: 600; color: #605d5d;">
+      <span>2 academic hours</span>
+      <span>Theory + chart lab</span>
+      <span>Bring a laptop or spreadsheet app</span>
+    </div>
+  </section>
+
+  <section data-label="Recap" data-screen-label="02" data-speaker-notes="Answers to last class's quiz: 1-B, 2-C, 3-B. Then the warm-up: ask for the five-number summary from memory before revealing." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 44px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">RECAP</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Five minutes</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Where class 1 left us</h2>
+    <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 26px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">The 12 cafés, in numbers</div>
+        <div style="font-size: 32px; font-weight: 600; line-height: 1.5;">18 · 22 · 25 · 27 · 28 · 30 · 30 · 33 · 36 · 40 · 44 · 96</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #f3f2f2; padding: 18px 20px;"><div style="font-size: 24px; font-weight: 700; color: #605d5d;">MEAN</div><div style="font-size: 42px; font-weight: 900;">35.75</div></div>
+          <div style="background: #f3f2f2; padding: 18px 20px;"><div style="font-size: 24px; font-weight: 700; color: #605d5d;">MEDIAN</div><div style="font-size: 42px; font-weight: 900;">30.0</div></div>
+          <div style="background: #f3f2f2; padding: 18px 20px;"><div style="font-size: 24px; font-weight: 700; color: #605d5d;">s</div><div style="font-size: 42px; font-weight: 900;">20.3</div></div>
+          <div style="background: #f3f2f2; padding: 18px 20px;"><div style="font-size: 24px; font-weight: 700; color: #605d5d;">Q1</div><div style="font-size: 42px; font-weight: 900;">26</div></div>
+          <div style="background: #f3f2f2; padding: 18px 20px;"><div style="font-size: 24px; font-weight: 700; color: #605d5d;">Q3</div><div style="font-size: 42px; font-weight: 900;">38</div></div>
+          <div style="background: #ffe0d9; padding: 18px 20px;"><div style="font-size: 24px; font-weight: 700; color: #7c1405;">IQR</div><div style="font-size: 42px; font-weight: 900; color: #7c1405;">12</div></div>
+        </div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; gap: 28px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">The open question</div>
+        <p style="margin: 0; font-size: 40px; font-weight: 700; line-height: 1.3;">We agreed branch 12 "looks unusual". Today it stops being a feeling.</p>
+        <p style="margin: 0; font-size: 30px; line-height: 1.45; color: #d7d3d3;">Statistics has a rule for it — one arithmetic line that any two analysts will apply the same way, on any dataset. That reproducibility is the point.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Frequency table" data-screen-label="03" data-speaker-notes="Build the table live: ask for the count in each bin. Stress that a frequency table is already a summary — you have thrown away the individual values." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">STEP 1</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">From raw values to counts</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The frequency distribution</h2>
+    <p style="margin: 0 0 32px; font-size: 30px; font-weight: 600; color: #444141;">Bins of 10 mln UZS, closed on the left: [15, 25) contains 15 up to but not including 25. Every value falls in exactly one bin.</p>
+    <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.1fr; gap: 2px; background: #201e1d; padding: 2px;">
+      <div style="background: #201e1d; color: #fff; padding: 14px 26px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">CLASS (mln UZS)</div>
+      <div style="background: #201e1d; color: #fff; padding: 14px 26px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">FREQUENCY f</div>
+      <div style="background: #201e1d; color: #fff; padding: 14px 26px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">RELATIVE</div>
+      <div style="background: #201e1d; color: #fff; padding: 14px 26px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">CUMULATIVE</div>
+      <div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px; font-weight: 700;">15 – 25</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">2</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">16.7%</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">2</div>
+      <div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px; font-weight: 700;">25 – 35</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">6</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">50.0%</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">8</div>
+      <div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px; font-weight: 700;">35 – 45</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">3</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">25.0%</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">11</div>
+      <div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px; font-weight: 700;">45 – 55</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">0</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">0.0%</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">11</div>
+      <div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px; font-weight: 700;">55 – 85</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">0</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">0.0%</div><div style="background: #f3f2f2; padding: 13px 26px; font-size: 30px;">11</div>
+      <div style="background: #ffe0d9; padding: 13px 26px; font-size: 30px; font-weight: 700; color: #7c1405;">85 – 105</div><div style="background: #ffe0d9; padding: 13px 26px; font-size: 30px; color: #7c1405;">1</div><div style="background: #ffe0d9; padding: 13px 26px; font-size: 30px; color: #7c1405;">8.3%</div><div style="background: #ffe0d9; padding: 13px 26px; font-size: 30px; color: #7c1405;">12</div>
+    </div>
+    <p style="margin: 32px 0 0; font-size: 30px; font-weight: 600; line-height: 1.35; color: #444141;">Two checks before you trust any frequency table: the frequencies sum to <em>n</em>, and the relative frequencies sum to 100%.</p>
+  </section>
+
+  <section data-label="Histogram" data-screen-label="04" data-speaker-notes="Point at the empty bins — that gap between 45 and 85 is the visual signature of an outlier. Bars touch because the variable is continuous; that is what separates a histogram from a bar chart." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">CHART 1 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">One numeric variable</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Histogram of café revenue</h2>
+    <div data-om-raster="true" style="display: flex; gap: 32px; flex: 1;">
+      <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; padding-bottom: 56px; font-size: 26px; font-weight: 700; color: #605d5d;">
+        <span>6</span><span>4</span><span>2</span><span>0</span>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="flex: 1; display: flex; align-items: flex-end; gap: 6px; border-bottom: 3px solid #201e1d; border-left: 3px solid #201e1d;">
+          <div style="flex: 1; height: 33.3%; background: #201e1d; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: #fff; font-size: 28px; font-weight: 800;">2</div>
+          <div style="flex: 1; height: 100%; background: #201e1d; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: #fff; font-size: 28px; font-weight: 800;">6</div>
+          <div style="flex: 1; height: 50%; background: #201e1d; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: #fff; font-size: 28px; font-weight: 800;">3</div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 16.6%; background: #ec3013; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: #fff; font-size: 28px; font-weight: 800;">1</div>
+        </div>
+        <div style="display: flex; gap: 6px; padding-top: 14px; font-size: 24px; font-weight: 600; color: #444141;">
+          <span style="flex: 1; text-align: center;">15–25</span>
+          <span style="flex: 1; text-align: center;">25–35</span>
+          <span style="flex: 1; text-align: center;">35–45</span>
+          <span style="flex: 1; text-align: center;">45–55</span>
+          <span style="flex: 1; text-align: center;">55–65</span>
+          <span style="flex: 1; text-align: center;">65–75</span>
+          <span style="flex: 1; text-align: center;">75–85</span>
+          <span style="flex: 1; text-align: center;">85–95</span>
+        </div>
+      </div>
+      <div style="width: 420px; border-left: 2px solid #201e1d; padding-left: 36px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">What to say out loud</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">Most branches cluster between 25 and 45 mln. The distribution has a <strong>long right tail</strong> and one isolated bar far from the rest.</p>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4; color: #444141;">Bars touch, because revenue is continuous. Gaps between bars in a histogram mean empty ranges — never decoration.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Bin width" data-screen-label="05" data-speaker-notes="Show that the analyst's choice changes the story. Rule of thumb: √n bins, then adjust by eye. Never let software choose silently." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">THE ONE JUDGEMENT CALL</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">How many bins?</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The same data, three bin widths</h2>
+    <div data-om-raster="true" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 32px; display: flex; flex-direction: column;">
+        <div style="font-size: 34px; font-weight: 900;">Too wide · 2 bins</div>
+        <div style="display: flex; align-items: flex-end; gap: 8px; height: 260px; border-bottom: 3px solid #201e1d; margin: 28px 0 16px;">
+          <div style="flex: 1; height: 100%; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 9%; background: #bab6b6;"></div>
+        </div>
+        <p style="margin: 0; font-size: 27px; line-height: 1.35; color: #444141;">Shape destroyed. You learn only that most branches are small.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px; display: flex; flex-direction: column;">
+        <div style="font-size: 34px; font-weight: 900; color: #ec3013;">Right · 8 bins</div>
+        <div style="display: flex; align-items: flex-end; gap: 5px; height: 260px; border-bottom: 3px solid #201e1d; margin: 28px 0 16px;">
+          <div style="flex: 1; height: 33%; background: #201e1d;"></div>
+          <div style="flex: 1; height: 100%; background: #201e1d;"></div>
+          <div style="flex: 1; height: 50%; background: #201e1d;"></div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 1px; background: #bab6b6;"></div>
+          <div style="flex: 1; height: 17%; background: #ec3013;"></div>
+        </div>
+        <p style="margin: 0; font-size: 27px; line-height: 1.35; color: #444141;">Cluster, tail and gap all visible. ≈ √12 bins.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px; display: flex; flex-direction: column;">
+        <div style="font-size: 34px; font-weight: 900;">Too narrow · 20 bins</div>
+        <div style="display: flex; align-items: flex-end; gap: 2px; height: 260px; border-bottom: 3px solid #201e1d; margin: 28px 0 16px;">
+          <div style="flex: 1; height: 50%; background: #bab6b6;"></div><div style="flex: 1; height: 1px; background: #d7d3d3;"></div><div style="flex: 1; height: 50%; background: #bab6b6;"></div><div style="flex: 1; height: 50%; background: #bab6b6;"></div><div style="flex: 1; height: 100%; background: #bab6b6;"></div><div style="flex: 1; height: 50%; background: #bab6b6;"></div><div style="flex: 1; height: 1px; background: #d7d3d3;"></div><div style="flex: 1; height: 50%; background: #bab6b6;"></div><div style="flex: 1; height: 50%; background: #bab6b6;"></div><div style="flex: 1; height: 1px; background: #d7d3d3;"></div><div style="flex: 1; height: 50%; background: #bab6b6;"></div><div style="flex: 1; height: 1px; background: #d7d3d3;"></div><div style="flex: 1; height: 1px; background: #d7d3d3;"></div><div style="flex: 1; height: 1px; background: #d7d3d3;"></div><div style="flex: 1; height: 1px; background: #d7d3d3;"></div><div style="flex: 1; height: 50%; background: #bab6b6;"></div>
+        </div>
+        <p style="margin: 0; font-size: 27px; line-height: 1.35; color: #444141;">Noise. Every branch is its own bar and no pattern survives.</p>
+      </div>
+    </div>
+    <p style="margin: 32px 0 0; font-size: 30px; font-weight: 700; color: #201e1d;">Start with √n bins, then adjust until the shape is stable — and state the bin width in the caption.</p>
+  </section>
+
+  <section data-label="Shape" data-screen-label="06" data-speaker-notes="Get examples from them: salaries (right), exam scores in an easy exam (left), height (symmetric)." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">SHAPE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">The direction of the tail names the skew</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Three shapes, three orderings</h2>
+    <div data-om-raster="true" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 34px; display: flex; flex-direction: column;">
+        <div style="font-size: 38px; font-weight: 900;">Symmetric</div>
+        <div style="display: flex; align-items: flex-end; gap: 5px; height: 220px; border-bottom: 3px solid #201e1d; margin: 26px 0 20px;">
+          <div style="flex: 1; height: 18%; background: #201e1d;"></div><div style="flex: 1; height: 42%; background: #201e1d;"></div><div style="flex: 1; height: 74%; background: #201e1d;"></div><div style="flex: 1; height: 100%; background: #201e1d;"></div><div style="flex: 1; height: 74%; background: #201e1d;"></div><div style="flex: 1; height: 42%; background: #201e1d;"></div><div style="flex: 1; height: 18%; background: #201e1d;"></div>
+        </div>
+        <div style="font-size: 32px; font-weight: 800; margin-bottom: 10px;">mean = median = mode</div>
+        <p style="margin: 0; font-size: 27px; line-height: 1.35; color: #444141;">Heights, measurement error, exam scores in a well-set exam.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 34px; display: flex; flex-direction: column;">
+        <div style="font-size: 38px; font-weight: 900; color: #ec3013;">Right-skewed</div>
+        <div style="display: flex; align-items: flex-end; gap: 5px; height: 220px; border-bottom: 3px solid #201e1d; margin: 26px 0 20px;">
+          <div style="flex: 1; height: 55%; background: #ec3013;"></div><div style="flex: 1; height: 100%; background: #ec3013;"></div><div style="flex: 1; height: 68%; background: #ec3013;"></div><div style="flex: 1; height: 40%; background: #ec3013;"></div><div style="flex: 1; height: 24%; background: #ec3013;"></div><div style="flex: 1; height: 12%; background: #ec3013;"></div><div style="flex: 1; height: 6%; background: #ec3013;"></div>
+        </div>
+        <div style="font-size: 32px; font-weight: 800; margin-bottom: 10px;">mode &lt; median &lt; mean</div>
+        <p style="margin: 0; font-size: 27px; line-height: 1.35; color: #444141;">Income, house prices, waiting times — and our café chain.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 34px; display: flex; flex-direction: column;">
+        <div style="font-size: 38px; font-weight: 900;">Left-skewed</div>
+        <div style="display: flex; align-items: flex-end; gap: 5px; height: 220px; border-bottom: 3px solid #201e1d; margin: 26px 0 20px;">
+          <div style="flex: 1; height: 6%; background: #201e1d;"></div><div style="flex: 1; height: 12%; background: #201e1d;"></div><div style="flex: 1; height: 24%; background: #201e1d;"></div><div style="flex: 1; height: 40%; background: #201e1d;"></div><div style="flex: 1; height: 68%; background: #201e1d;"></div><div style="flex: 1; height: 100%; background: #201e1d;"></div><div style="flex: 1; height: 55%; background: #201e1d;"></div>
+        </div>
+        <div style="font-size: 32px; font-weight: 800; margin-bottom: 10px;">mean &lt; median &lt; mode</div>
+        <p style="margin: 0; font-size: 27px; line-height: 1.35; color: #444141;">Age at death, scores on an easy test, retirement ages.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Skewness" data-screen-label="07" data-speaker-notes="Only the sign and rough size matter at this level. Rule of thumb: |Sk| under 0.5 near-symmetric, 0.5-1 moderate, above 1 strong." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">MEASURING SHAPE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Pearson's second coefficient</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Putting a number on the skew</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 36px;">
+        <div style="display: flex; align-items: center; gap: 24px;">
+          <span style="font-size: 52px; font-weight: 700; font-style: italic;">Sk =</span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 40px; font-weight: 700; font-style: italic; padding: 0 16px 10px;">3 (x̄ − median)</span>
+            <span style="border-top: 3px solid #201e1d; font-size: 40px; font-weight: 700; font-style: italic; padding: 10px 16px 0; width: 100%; text-align: center;">s</span>
+          </span>
+        </div>
+        <div style="font-size: 34px; font-weight: 600; line-height: 1.45;">Sk = 3 (35.75 − 30) ÷ 20.3<br>Sk = 17.25 ÷ 20.3</div>
+        <div style="font-size: 84px; font-weight: 900; letter-spacing: -0.03em; color: #ec3013;">Sk = +0.85</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 30px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">How to read it</div>
+        <div style="display: flex; flex-direction: column; gap: 18px; font-size: 32px; font-weight: 600;">
+          <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #605d5d; padding-bottom: 14px;"><span>Sk ≈ 0</span><span style="color: #d7d3d3;">symmetric</span></div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #605d5d; padding-bottom: 14px;"><span>0.5 to 1</span><span style="color: #ff9783; font-weight: 800;">moderate right skew</span></div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #605d5d; padding-bottom: 14px;"><span>&gt; 1</span><span style="color: #d7d3d3;">strong right skew</span></div>
+          <div style="display: flex; justify-content: space-between;"><span>negative</span><span style="color: #d7d3d3;">tail runs left</span></div>
+        </div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #d7d3d3;">The sign always follows the tail. Positive means the long tail points right — towards the large values.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Box plot anatomy" data-screen-label="08" data-speaker-notes="Emphasise: the box is the middle 50%, the whiskers stop at the last value inside the fence, and anything beyond is drawn as its own point." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">CHART 2 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Five numbers, one picture</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Anatomy of a box plot</h2>
+    <div data-om-raster="true" style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 40px;">
+      <div style="position: relative; height: 240px; border-bottom: 3px solid #201e1d;">
+        <div style="position: absolute; left: 5%; right: 5%; top: 118px; height: 3px; background: #201e1d;"></div>
+        <div style="position: absolute; left: 5%; top: 76px; width: 3px; height: 88px; background: #201e1d;"></div>
+        <div style="position: absolute; left: 60%; top: 76px; width: 3px; height: 88px; background: #201e1d;"></div>
+        <div style="position: absolute; left: 22%; top: 50px; width: 38%; height: 140px; background: #f3f2f2; border: 3px solid #201e1d;"></div>
+        <div style="position: absolute; left: 38%; top: 50px; width: 5px; height: 140px; background: #ec3013;"></div>
+        <div style="position: absolute; left: 92%; top: 105px; width: 30px; height: 30px; background: #ec3013;"></div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; background: #201e1d; padding: 2px;">
+        <div style="background: #f3f2f2; padding: 22px 20px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.08em; color: #605d5d;">LEFT WHISKER</div><div style="font-size: 28px; font-weight: 600; margin-top: 8px; line-height: 1.3;">Smallest value inside the fence</div></div>
+        <div style="background: #f3f2f2; padding: 22px 20px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.08em; color: #605d5d;">BOX LEFT</div><div style="font-size: 28px; font-weight: 600; margin-top: 8px; line-height: 1.3;">Q1 — the 25th percentile</div></div>
+        <div style="background: #ffe0d9; padding: 22px 20px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.08em; color: #7c1405;">RED LINE</div><div style="font-size: 28px; font-weight: 600; margin-top: 8px; line-height: 1.3; color: #7c1405;">Median — not the mean</div></div>
+        <div style="background: #f3f2f2; padding: 22px 20px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.08em; color: #605d5d;">BOX RIGHT</div><div style="font-size: 28px; font-weight: 600; margin-top: 8px; line-height: 1.3;">Q3 — the 75th percentile</div></div>
+        <div style="background: #f3f2f2; padding: 22px 20px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.08em; color: #605d5d;">BOX WIDTH</div><div style="font-size: 28px; font-weight: 600; margin-top: 8px; line-height: 1.3;">IQR — the middle 50%</div></div>
+        <div style="background: #ffe0d9; padding: 22px 20px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.08em; color: #7c1405;">LONE SQUARE</div><div style="font-size: 28px; font-weight: 600; margin-top: 8px; line-height: 1.3; color: #7c1405;">A suspected outlier</div></div>
+      </div>
+      <p style="margin: 0; font-size: 30px; font-weight: 700;">An off-centre median line is itself the skewness signal — here the median sits left of centre, so the long tail is on the right.</p>
+    </div>
+  </section>
+
+  <section data-label="Our box plot" data-screen-label="09" data-speaker-notes="Have them read the chart aloud before you interpret it. Then compare with the histogram: same shape, one twentieth of the ink." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">OUR DATA</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">12 cafés · million UZS</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The café chain in one chart</h2>
+    <div data-om-raster="true" style="flex: 1; display: flex; gap: 48px;">
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="position: relative; flex: 1; border-bottom: 3px solid #201e1d; border-left: 3px solid #201e1d;">
+          <div style="position: absolute; left: 18%; right: 56%; top: 50%; height: 3px; background: #201e1d;"></div>
+          <div style="position: absolute; left: 18%; top: 32%; width: 3px; height: 36%; background: #201e1d;"></div>
+          <div style="position: absolute; left: 44%; top: 32%; width: 3px; height: 36%; background: #201e1d;"></div>
+          <div style="position: absolute; left: 26%; top: 24%; width: 12%; height: 52%; background: #f3f2f2; border: 3px solid #201e1d;"></div>
+          <div style="position: absolute; left: 30%; top: 24%; width: 5px; height: 52%; background: #ec3013;"></div>
+          <div style="position: absolute; left: 94%; top: 46%; width: 28px; height: 28px; background: #ec3013;"></div>
+          <div style="position: absolute; left: 56%; top: 30%; font-size: 26px; font-weight: 700; color: #7d7979;">upper fence 56 →</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding-top: 14px; font-size: 26px; font-weight: 700; color: #605d5d;">
+          <span>0</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100</span>
+        </div>
+      </div>
+      <div style="width: 520px; border-left: 2px solid #201e1d; padding-left: 40px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Reading it in three sentences</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;"><strong>Centre.</strong> The median branch takes 30 mln a month.</p>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;"><strong>Spread.</strong> The middle half of branches sit in a narrow 12 mln band, from 26 to 38.</p>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;"><strong>Shape.</strong> The right whisker is longer and one point sits alone at 96 — right-skewed, with one branch unlike the others.</p>
+        <div style="margin-top: auto; background: #201e1d; color: #fff; padding: 26px 28px; font-size: 28px; line-height: 1.4;">A box plot is the fastest honest summary of one numeric variable — and the only chart that shows outliers by construction.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="1.5 × IQR rule" data-screen-label="10" data-speaker-notes="This is the calculation the whole class has been building towards. Make everyone write the two fence lines down." style="background: #ec3013; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;">THE RULE</div>
+    <div>
+      <h2 style="margin: 0 0 44px; font-size: 100px; font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; max-width: 28ch;">An outlier is a definition, not an opinion</h2>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: #fff; padding: 4px;">
+        <div style="background: #ec3013; padding: 30px 32px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Step 1 · IQR</div><div style="font-size: 40px; font-weight: 900; margin-top: 12px;">38 − 26 = 12</div></div>
+        <div style="background: #ec3013; padding: 30px 32px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Step 2 · 1.5 × IQR</div><div style="font-size: 40px; font-weight: 900; margin-top: 12px;">1.5 × 12 = 18</div></div>
+        <div style="background: #ec3013; padding: 30px 32px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Step 3 · fences</div><div style="font-size: 40px; font-weight: 900; margin-top: 12px;">26 − 18 = 8<br>38 + 18 = 56</div></div>
+        <div style="background: #fff; color: #ae1800; padding: 30px 32px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Step 4 · verdict</div><div style="font-size: 40px; font-weight: 900; margin-top: 12px;">96 &gt; 56<br>outlier</div></div>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 36px; font-weight: 600; line-height: 1.35; max-width: 66ch;">Lower fence Q1 − 1.5 × IQR, upper fence Q3 + 1.5 × IQR. Everything outside is <strong>flagged for investigation</strong> — flagged, not deleted. Branch 12 is not an error; it is a mall location with different economics.</p>
+  </section>
+
+  <section data-label="Outlier decisions" data-screen-label="11" data-speaker-notes="The professional habit: report both figures. Silently dropping an inconvenient point is the most common form of quiet dishonesty in applied work." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">WHAT NOW?</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Four legitimate responses</span>
+    </div>
+    <h2 style="margin: 0 0 20px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">You flagged an outlier. Then what?</h2>
+    <p style="margin: 0 0 32px; font-size: 30px; font-weight: 600; color: #444141;">Only one of these is never acceptable: dropping the point and not saying so.</p>
+    <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 26px 36px; display: flex; gap: 32px; align-items: baseline;"><span style="font-size: 32px; font-weight: 900; color: #ec3013; min-width: 52px;">01</span><div><span style="font-size: 32px; font-weight: 800;">Check it.</span> <span style="font-size: 30px; color: #444141;">Is it a typo — 96 instead of 9.6? A wrong unit? Half of all outliers die here.</span></div></div>
+      <div style="background: #f3f2f2; padding: 26px 36px; display: flex; gap: 32px; align-items: baseline;"><span style="font-size: 32px; font-weight: 900; color: #ec3013; min-width: 52px;">02</span><div><span style="font-size: 32px; font-weight: 800;">Explain it.</span> <span style="font-size: 30px; color: #444141;">A mall branch is a different business model. That is a finding, not a nuisance.</span></div></div>
+      <div style="background: #f3f2f2; padding: 26px 36px; display: flex; gap: 32px; align-items: baseline;"><span style="font-size: 32px; font-weight: 900; color: #ec3013; min-width: 52px;">03</span><div><span style="font-size: 32px; font-weight: 800;">Report both ways.</span> <span style="font-size: 30px; color: #444141;">"Mean 35.75 with all branches; 30.27 excluding the mall location." Let the reader judge.</span></div></div>
+      <div style="background: #f3f2f2; padding: 26px 36px; display: flex; gap: 32px; align-items: baseline;"><span style="font-size: 32px; font-weight: 900; color: #ec3013; min-width: 52px;">04</span><div><span style="font-size: 32px; font-weight: 800;">Switch statistic.</span> <span style="font-size: 30px; color: #444141;">Use the median and the IQR, which the point cannot distort in the first place.</span></div></div>
+      <div style="background: #201e1d; color: #fff; padding: 26px 36px; display: flex; gap: 32px; align-items: baseline;"><span style="font-size: 32px; font-weight: 900; color: #ff9783; min-width: 52px;">✕</span><div><span style="font-size: 32px; font-weight: 800;">Delete it quietly.</span> <span style="font-size: 30px; color: #d7d3d3;">This is the one that ends careers. Every exclusion goes in the write-up.</span></div></div>
+    </div>
+  </section>
+
+  <section data-label="Quiz 2" data-screen-label="12" data-speaker-notes="Answers: 1-C (right-skewed: mean above median), 2-B (fence at 56, so 60 is an outlier), 3-A (box plot; the histogram hides individual points)." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 40px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">CHECK · HANDS UP</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">4 minutes</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vote on each one</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">1 — A dataset has mean 52 and median 40. What is the shape?</div>
+        <div style="display: flex; gap: 44px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · Symmetric</span><span>B · Left-skewed</span><span>C · Right-skewed</span><span>D · Cannot say</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">2 — A 13th branch reports 60 mln. Using our fences, is it an outlier?</div>
+        <div style="display: flex; gap: 44px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · No, it is under the mean + s</span><span>B · Yes, it is above 56</span><span>C · Only if we recompute Q3</span><span>D · Not enough data</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">3 — You must compare the spread of 8 regions in one figure. Which chart?</div>
+        <div style="display: flex; gap: 44px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · Eight box plots side by side</span><span>B · Eight histograms</span><span>C · One pie chart</span><span>D · A scatter plot</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Scatter plot" data-screen-label="13" data-speaker-notes="Two variables at last. Note that the outlier branch is also the biggest advertiser — that is the seed of the regression discussion in week 12." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">CHART 3 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Two numeric variables</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Advertising spend against revenue</h2>
+    <div data-om-raster="true" style="flex: 1; display: flex; gap: 44px;">
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div style="flex: 1; display: flex; gap: 20px;">
+          <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; font-size: 25px; font-weight: 700; color: #605d5d;">
+            <span>100</span><span>75</span><span>50</span><span>25</span><span>0</span>
+          </div>
+          <div style="position: relative; flex: 1; border-left: 3px solid #201e1d; border-bottom: 3px solid #201e1d;">
+            <div style="position: absolute; left: 16.7%; bottom: 18%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 23.3%; bottom: 22%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 26.7%; bottom: 25%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 30%; bottom: 27%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 33.3%; bottom: 28%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 36.7%; bottom: 30%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 38.3%; bottom: 30%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 43.3%; bottom: 33%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 48.3%; bottom: 36%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 53.3%; bottom: 40%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 60%; bottom: 44%; width: 22px; height: 22px; background: #201e1d; transform: translate(-11px, 11px);"></div>
+            <div style="position: absolute; left: 83.3%; bottom: 96%; width: 26px; height: 26px; background: #ec3013; transform: translate(-13px, 13px);"></div>
+            <div style="position: absolute; left: 66%; bottom: 82%; font-size: 26px; font-weight: 700; color: #ae1800;">branch 12</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 14px 0 0 60px; font-size: 25px; font-weight: 700; color: #605d5d;">
+          <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+        </div>
+        <div style="padding-left: 60px; font-size: 26px; font-weight: 700; color: #444141; margin-top: 6px;">Advertising spend, mln UZS →</div>
+      </div>
+      <div style="width: 480px; border-left: 2px solid #201e1d; padding-left: 40px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Rules for scatter plots</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4;">One dot per unit — twelve branches, twelve dots. Never join them with a line unless the x-axis is time.</p>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4;">Put the variable you think <em>explains</em> on the horizontal axis and the one being explained on the vertical.</p>
+        <div style="margin-top: auto; background: #ffe0d9; color: #7c1405; padding: 24px 28px; font-size: 28px; line-height: 1.4;">More advertising goes with more revenue here — but nothing in this chart proves that advertising <em>caused</em> it. Week 13.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Reading a scatter" data-screen-label="14" data-speaker-notes="Drill the four words: direction, form, strength, unusual points. Ask them to describe the previous slide using all four." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 40px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">INTERPRETATION</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Say all four, every time</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Four words describe any scatter plot</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 42px; font-weight: 900;">Direction</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">Do the dots rise or fall from left to right? Positive, negative, or none.</p>
+        <div style="margin-top: auto; font-size: 28px; font-weight: 700; color: #ec3013;">Ours: positive</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 42px; font-weight: 900;">Form</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">A straight band, a curve, or two separate clouds? Only straight bands justify a linear model.</p>
+        <div style="margin-top: auto; font-size: 28px; font-weight: 700; color: #ec3013;">Ours: roughly linear</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 42px; font-weight: 900;">Strength</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">How tightly do the dots hug the pattern? Week 6 gives this a number, <em>r</em>.</p>
+        <div style="margin-top: auto; font-size: 28px; font-weight: 700; color: #ec3013;">Ours: strong</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 42px; font-weight: 900;">Unusual points</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">Anything far from the crowd — it may be driving the whole apparent pattern.</p>
+        <div style="margin-top: auto; font-size: 28px; font-weight: 700; color: #ff9783;">Ours: branch 12</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Chart choice" data-screen-label="15" data-speaker-notes="Tell them to photograph this slide. It answers 'which chart?' for the rest of the semester and for the data project." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">DECISION TABLE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Photograph this slide</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Which chart, and when</h2>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr 1.5fr; gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">WHAT YOU HAVE</div>
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">USE</div>
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">BECAUSE</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700;">One categorical variable</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">Bar chart</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.3;">Length is the easiest visual quantity to compare</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700;">One numeric variable</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">Histogram or box plot</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.3;">Shape and outliers become visible at a glance</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700;">One numeric, several groups</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">Box plots side by side</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.3;">Centre, spread and shape compared in one frame</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700;">Two numeric variables</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">Scatter plot</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.3;">Shows the joint pattern, not two separate summaries</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700;">Numeric over time</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">Line chart</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.3;">Order matters, and the line encodes it</div>
+      <div style="background: #ffe0d9; padding: 20px 30px; font-size: 30px; font-weight: 700; color: #7c1405;">Parts of a whole</div>
+      <div style="background: #ffe0d9; padding: 20px 30px; font-size: 30px; font-weight: 700; color: #7c1405;">Still a bar chart</div>
+      <div style="background: #ffe0d9; padding: 20px 30px; font-size: 28px; line-height: 1.3; color: #7c1405;">Angles are read badly; pie charts fail past three slices</div>
+    </div>
+  </section>
+
+  <section data-label="Bad charts" data-screen-label="16" data-speaker-notes="Fast slide, high energy. Ask them to name a chart from the news that did one of these." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">CHART CLINIC</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Four ways to mislead without lying</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Honest numbers, dishonest picture</h2>
+    <div data-om-raster="true" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 30px 34px; display: flex; gap: 30px; align-items: center;">
+        <div style="display: flex; align-items: flex-end; gap: 10px; height: 130px; width: 150px; border-bottom: 3px solid #201e1d;">
+          <div style="flex: 1; height: 30%; background: #ec3013;"></div><div style="flex: 1; height: 100%; background: #ec3013;"></div>
+        </div>
+        <div><div style="font-size: 32px; font-weight: 900;">Truncated axis</div><p style="margin: 8px 0 0; font-size: 27px; line-height: 1.35; color: #444141;">Starting the y-axis at 94 turns a 3% rise into a cliff. Bar charts must start at zero.</p></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 30px 34px; display: flex; gap: 30px; align-items: center;">
+        <div style="width: 150px; display: flex; gap: 8px; align-items: flex-end; height: 130px;">
+          <div style="width: 60px; height: 60px; background: #bab6b6;"></div><div style="width: 110px; height: 110px; background: #201e1d;"></div>
+        </div>
+        <div><div style="font-size: 32px; font-weight: 900;">Area for one number</div><p style="margin: 8px 0 0; font-size: 27px; line-height: 1.35; color: #444141;">Doubling both width and height quadruples the ink for a doubled value.</p></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 30px 34px; display: flex; gap: 30px; align-items: center;">
+        <div style="width: 150px; height: 130px; border-radius: 50%; background: conic-gradient(#201e1d 0 22%, #605d5d 0 40%, #9b9797 0 55%, #bab6b6 0 68%, #d7d3d3 0 80%, #ec3013 0 88%, #ff9783 0 100%);"></div>
+        <div><div style="font-size: 32px; font-weight: 900;">Seven-slice pie</div><p style="margin: 8px 0 0; font-size: 27px; line-height: 1.35; color: #444141;">Nobody can rank these slices. A sorted bar chart answers it instantly.</p></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 30px 34px; display: flex; gap: 30px; align-items: center;">
+        <div style="position: relative; width: 150px; height: 130px; border-left: 3px solid #ec3013; border-right: 3px solid #201e1d; border-bottom: 3px solid #201e1d;">
+          <div style="position: absolute; left: 0; bottom: 20px; width: 100%; height: 4px; background: #ec3013; transform: rotate(-18deg);"></div>
+          <div style="position: absolute; left: 0; bottom: 60px; width: 100%; height: 4px; background: #201e1d; transform: rotate(12deg);"></div>
+        </div>
+        <div><div style="font-size: 32px; font-weight: 900;">Two axes, one frame</div><p style="margin: 8px 0 0; font-size: 27px; line-height: 1.35; color: #444141;">Sliding two scales until the lines cross manufactures any relationship you want.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Chart lab" data-screen-label="17" data-speaker-notes="30 minutes at the machines. Requirement: every chart gets a one-sentence caption stating the finding, not the chart type." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">CHART LAB · IN CLASS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">30 minutes · pairs · spreadsheet</span>
+    </div>
+    <h2 style="margin: 0 0 20px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Build all three charts</h2>
+    <p style="margin: 0 0 32px; font-size: 30px; font-weight: 600; color: #444141;">Use the 12 café values, or your own data-project dataset if you already have one.</p>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 30px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ec3013;">A</span>
+        <div><div style="font-size: 34px; font-weight: 800; margin-bottom: 8px;">Histogram, twice</div><div style="font-size: 29px; line-height: 1.4; color: #444141;">Once with 4 bins, once with 8. Write one sentence on what changes and which you would publish.</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 30px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ec3013;">B</span>
+        <div><div style="font-size: 34px; font-weight: 800; margin-bottom: 8px;">Box plot with the fences computed by hand</div><div style="font-size: 29px; line-height: 1.4; color: #444141;">Then add a 13th branch at 58 mln, recompute Q1, Q3 and the fences, and state whether either point is still an outlier.</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 30px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ec3013;">C</span>
+        <div><div style="font-size: 34px; font-weight: 800; margin-bottom: 8px;">Scatter plot, described in four words</div><div style="font-size: 29px; line-height: 1.4; color: #444141;">Direction, form, strength, unusual points. Then rebuild it without branch 12 — does the pattern survive?</div></div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 30px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ff9783;">D</span>
+        <div><div style="font-size: 34px; font-weight: 800; margin-bottom: 8px;">Caption everything</div><div style="font-size: 29px; line-height: 1.4; color: #d7d3d3;">A caption states the finding — "one mall branch earns three times the median" — never "histogram of revenue".</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Glossary" data-screen-label="18" data-speaker-notes="Add these to last class's list. Both will be examined in week 8." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">KEY TERMS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">English · Russian</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vocabulary for the exam</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Frequency distribution</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">частотное распределение — counts per class</div></div>
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Histogram · гистограмма</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">Bars touching; one numeric variable</div></div>
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Bin / class width</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">интервал — the analyst's judgement call</div></div>
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Skewness · асимметрия</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">Sign follows the long tail</div></div>
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Box plot · ящик с усами</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">Five-number summary, drawn</div></div>
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Fence · граница выброса</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">Q1 − 1.5 IQR and Q3 + 1.5 IQR</div></div>
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Outlier · выброс</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">Beyond a fence — flagged, not deleted</div></div>
+      <div style="background: #f3f2f2; padding: 24px 32px;"><div style="font-size: 32px; font-weight: 800;">Scatter plot · диаграмма рассеяния</div><div style="font-size: 27px; color: #444141; margin-top: 6px;">One dot per unit, two variables</div></div>
+    </div>
+  </section>
+
+  <section data-label="Homework" data-screen-label="19" data-speaker-notes="Problem set 1 is due at the start of next class. Next week the subject changes completely — from describing data to modelling chance." style="background: #201e1d; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #605d5d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.14em; color: #ff9783;">HOMEWORK · END OF TOPIC 1</span>
+      <span style="font-size: 26px; font-weight: 700; color: #bab6b6;">Due week 2, class 1</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: start;">
+      <div>
+        <h2 style="margin: 0 0 40px; font-size: 84px; font-weight: 900; line-height: 0.98; letter-spacing: -0.035em;">Before next class</h2>
+        <div style="display: flex; flex-direction: column; gap: 28px; font-size: 34px; line-height: 1.35;">
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">A</span><span>Finish the chart lab and hand in <strong>Problem set 1</strong> — descriptive statistics plus the three charts, each with a finding caption.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">B</span><span>Read Newbold ch. 2–3, or OpenStax ch. 2, on graphical summaries. Then read ch. 4 on probability <em>before</em> next class.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">C</span><span>Data project: produce one histogram and one box plot of your own dataset, and write the two sentences they support.</span></div>
+        </div>
+      </div>
+      <div style="border-left: 2px solid #605d5d; padding-left: 48px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783; margin-bottom: 24px;">Next week</div>
+        <div style="font-size: 46px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px;">Week 2 — Foundations of probability</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #d7d3d3;">We stop describing what happened and start quantifying what might. Sample spaces, Kolmogorov's three axioms, and the two rules that generate every probability calculation in the course.</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 26px; font-weight: 600; color: #bab6b6; border-top: 2px solid #605d5d; padding-top: 24px;">
+      <span>Consultations: Thursday 14:00–18:00</span>
+      <span>STAT201 · Week 1 · Class 2</span>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+<script>if(window.Telegram&&window.Telegram.WebApp){window.Telegram.WebApp.ready();window.Telegram.WebApp.expand();}</script>
+</body>
+</html>
