@@ -3,10 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f3f2f2">
-<meta name="description" content="STAT201 Statistics course hub at Tashkent International University">
-<title>STAT201 Statistics · TIU</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -21,14 +17,6 @@
   a { color: #ae1800; text-decoration: none; }
   a:hover { color: #ec3013; }
   a:focus-visible { outline: 2px solid #ec3013; outline-offset: 2px; }
-  .coming-soon { display: block; padding: 18px; background: #e5e2e2; color: #605d5d; cursor: not-allowed; }
-  @media (max-width: 760px) {
-    .course-hero, .course-layout { grid-template-columns: 1fr !important; }
-    .course-hero > div:first-child, .course-layout > div:first-child { border-right: 0 !important; }
-    header, footer { padding-left: 18px !important; padding-right: 18px !important; }
-    .course-hero > div:first-child { padding: 32px 18px 28px !important; }
-    article { padding-left: 18px !important; padding-right: 18px !important; }
-  }
 </style>
 </helmet>
 
@@ -46,13 +34,13 @@
     </div>
   </header>
 
-  <section class="course-hero" style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
+  <section style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
     <div style="padding: 48px 32px 40px; border-right: 2px solid #201e1d;">
       <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ec3013; margin-bottom: 20px;">Course hub · Autumn 2026</div>
       <h1 style="margin: 0 0 20px; font-size: clamp(48px, 7vw, 92px); font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; text-transform: uppercase;">Statistics</h1>
       <p style="margin: 0; max-width: 54ch; font-size: 17px; line-height: 1.5; color: #444141; text-wrap: pretty;">From describing a dataset to testing a hypothesis. Fifteen weeks of descriptive statistics, probability, inference and regression for economics, finance and management students.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
-        <a href="week-1-class-1.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; background: #ec3013; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Open this week's class →</a>
+        <a href="week-3-class-2.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; background: #ec3013; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Open this week's class →</a>
         <a href="#syllabus" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; border: 2px solid #201e1d; color: #201e1d; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Syllabus details</a>
       </div>
     </div>
@@ -97,7 +85,7 @@
     </div>
   </div>
 
-  <section class="course-layout" style="display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
+  <section style="display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
 
     <div style="border-right: 2px solid #201e1d;">
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 22px 32px; border-bottom: 2px solid #201e1d;">
@@ -141,12 +129,42 @@
             <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Events, axioms and the rules</div>
             <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + exercises</div>
           </a>
-          <div class="coming-soon" aria-disabled="true">
-            <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 2</div>
-            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Counting and independence</div>
-            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + problem lab</div>
-            <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 10px;">Coming soon</div>
-          </div>
+          <a href="week-2-class-2.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 2</span>
+              <span style="padding: 2px 7px; background: #201e1d; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.08em;">R</span>
+            </div>
+            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Counting, independence and R</div>
+            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + first R session</div>
+          </a>
+        </div>
+      </article>
+
+      <article style="padding: 28px 32px; border-bottom: 2px solid #201e1d;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px;">
+          <span style="padding: 5px 10px; background: #201e1d; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">WEEK 03</span>
+          <span style="padding: 5px 10px; background: #ffe0d9; color: #7c1405; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">{{ week3Status }}</span>
+          <span style="font-size: 13px; font-weight: 600; color: #605d5d;">4 academic hours · 7h self-study</span>
+        </div>
+        <h3 style="margin: 0 0 10px; font-size: clamp(26px, 3vw, 36px); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em;">Conditional probability and Bayes' theorem</h3>
+        <p style="margin: 0 0 22px; max-width: 62ch; font-size: 16px; line-height: 1.5; color: #444141;">Conditioning and the shrinking sample space; the law of total probability; Bayes' theorem; the base-rate fallacy; contingency tables in R.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: #201e1d; padding: 2px;">
+          <a href="week-3-class-1.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 1</span>
+              <span style="padding: 2px 7px; background: #201e1d; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.08em;">R</span>
+            </div>
+            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Conditional probability and Bayes</div>
+            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 slides · theory + R session 2</div>
+          </a>
+          <a href="week-3-class-2.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Class 2</span>
+              <span style="padding: 2px 7px; background: #201e1d; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.08em;">R</span>
+            </div>
+            <div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Update, decide and model</div>
+            <div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">15 slides · cases + decisions + R lab</div>
+          </a>
         </div>
       </article>
 
@@ -268,7 +286,6 @@ class Component extends DCLogic {
     const current = this.props.currentWeek ?? 1;
     const missed = this.props.hoursMissed ?? 2;
     const rest = [
-      ["03", "Conditional probability and Bayes' theorem"],
       ["04", "Random variables and discrete distributions"],
       ["05", "Continuous and normal distributions"],
       ["06", "Joint distributions, covariance, correlation"],
@@ -288,7 +305,8 @@ class Component extends DCLogic {
       tag: no === "08" ? "Midterm" : no === "15" ? "Revision" : "Upcoming"
     }));
     const news = [
-      { tag: "Announcement", date: "7 Sep", title: "Week 1 slides are live", body: "Both classes are published. Bring a laptop or a phone with a spreadsheet app to class 2 — we build the charts together." },
+      { tag: "R", date: "10 Sep", title: "R joins the course from week 2, class 2", body: "No installation needed — a free posit.cloud account in the browser is enough. Every topic from now on ends with an R session, and homework includes a commented .R file." },
+      { tag: "Announcement", date: "7 Sep", title: "Weeks 1–3 slides are live", body: "Five class decks published, each with worked examples, charts and a homework slide." },
       { tag: "Data project", date: "7 Sep", title: "Pick your dataset by week 3", body: "One question, one dataset, one conclusion. Open data from stat.uz, the Central Bank or any public source is fine." },
       { tag: "Reminder", date: "4 Sep", title: "Consultations start this Thursday", body: "Thursday 14:00–18:00, no appointment needed. Best used before a problem set is due, not after." },
       { tag: "Exam", date: "1 Sep", title: "Midterm format confirmed", body: "Week 8, written case. Part A: 15 short questions on probability and distributions. Part B: 3 computational problems. Tables and calculators allowed." }
@@ -296,6 +314,7 @@ class Component extends DCLogic {
     const deadlines = [
       { when: "Week 2", what: "Problem set 1 — descriptive statistics", note: "Submitted at the start of class 1" },
       { when: "Week 3", what: "Data project — question and dataset", note: "One paragraph plus a link" },
+      { when: "Week 3", what: "week02.R and week03.R", note: "Commented, reproducible, runs top to bottom" },
       { when: "Week 8", what: "Midterm exam", note: "Written case, 2 academic hours" },
       { when: "Week 14", what: "Data project — final submission", note: "Presentation or visual report" },
       { when: "Week 16", what: "Final exam", note: "Parts A, B and C · 40% of the grade" }
@@ -306,17 +325,12 @@ class Component extends DCLogic {
       newsCount: news.length,
       week1Status: current === 1 ? "In class now" : current > 1 ? "Completed" : "Published",
       week2Status: current === 2 ? "In class now" : current > 2 ? "Completed" : "Published",
+      week3Status: current === 3 ? "In class now" : current > 3 ? "Completed" : "Class 1 published",
       missedPct: Math.min(100, Math.round((missed / 20) * 100)) + "%",
       missedLabel: missed + " / 20 h missed"
     };
   }
 }
-</script>
-<script>
-  if (window.Telegram && window.Telegram.WebApp) {
-    window.Telegram.WebApp.ready();
-    window.Telegram.WebApp.expand();
-  }
 </script>
 </body>
 </html>
