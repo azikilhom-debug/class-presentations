@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #201e1d; font-family: "Archivo", system-ui, sans-serif; }
+  a { color: #ae1800; text-decoration: none; }
+  a:hover { color: #ec3013; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Title" data-screen-label="01" data-speaker-notes="Frame the shift clearly: week 1 described data that already existed. From today we quantify what has not happened yet." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em;">STAT201 · STATISTICS</span>
+      <span style="font-size: 26px; font-weight: 700; letter-spacing: 0.1em; color: #605d5d;">WEEK 2 · CLASS 1</span>
+    </div>
+    <div>
+      <div style="font-size: 30px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #ec3013; margin-bottom: 36px;">Topic 2 — Probability theory</div>
+      <h1 style="margin: 0; font-size: 148px; font-weight: 900; line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; max-width: 22ch;">Events, axioms and the rules</h1>
+      <p style="margin: 44px 0 0; font-size: 38px; font-weight: 500; line-height: 1.35; color: #444141; max-width: 48ch;">Three axioms and two rules. Everything else in probability is a consequence of them.</p>
+    </div>
+    <div style="display: flex; gap: 72px; border-top: 2px solid #201e1d; padding-top: 24px; font-size: 26px; font-weight: 600; color: #605d5d;">
+      <span>2 academic hours</span>
+      <span>Theory + exercises</span>
+      <span>Problem set 1 due today</span>
+    </div>
+  </section>
+
+  <section data-label="The shift" data-screen-label="02" data-speaker-notes="Collect problem set 1 here. Ask one group to read out their caption for the box plot before moving on." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 44px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">WHERE WE ARE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Topic 1 closed · topic 2 opens</span>
+    </div>
+    <h2 style="margin: 0 0 44px; font-size: 76px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The subject changes today</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 44px 40px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #7d7979;">Week 1 · descriptive</div>
+        <div style="font-size: 52px; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;">"What does this data say?"</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #444141;">The twelve branches existed. We measured them, summarised them, drew them. Nothing was uncertain — only unknown until we computed it.</p>
+      </div>
+      <div style="background: #ec3013; color: #fff; padding: 44px 40px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;">Week 2 · probability</div>
+        <div style="font-size: 52px; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;">"What might happen next?"</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">A 13th branch opens next month. A borrower may default. A shipment may arrive late. Probability is the arithmetic of those sentences — and the machinery behind every confidence interval and p-value in weeks 9–13.</p>
+      </div>
+    </div>
+    <p style="margin: 40px 0 0; font-size: 32px; font-weight: 700; line-height: 1.35;">Statistics without probability is bookkeeping. Probability is what lets a sample of 400 people say something about 37 million.</p>
+  </section>
+
+  <section data-label="Outcomes" data-screen-label="03" data-speaker-notes="Warn them: this topic is the most notation-heavy of the course, and the midterm's part A is mostly this material." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 56px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">OUTCOMES</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">By the end of these two hours</span>
+    </div>
+    <h2 style="margin: 0 0 56px; font-size: 76px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">You will be able to</h2>
+    <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">01</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">Write down the sample space of an experiment and express events as subsets of it.</span></div>
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">02</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">State Kolmogorov's three axioms and use them to reject an impossible probability claim.</span></div>
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">03</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">Apply the complement, addition and multiplication rules to real business data.</span></div>
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">04</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">Read joint, marginal and conditional probabilities off a contingency table — and test two events for independence.</span></div>
+    </div>
+  </section>
+
+  <section data-label="Sample space" data-screen-label="04" data-speaker-notes="Insist on the discipline of writing S out. Most exam mistakes in this topic come from never defining the sample space." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">DEFINITIONS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Always start here</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Experiment, sample space, event</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Random experiment</div>
+        <div style="font-size: 44px; font-weight: 900; line-height: 1.1;">A procedure with an uncertain result</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">Roll two dice. Call one customer. Wait for tomorrow's exchange rate.</p>
+        <div style="margin-top: auto; font-size: 29px; font-weight: 700;">Repeatable, at least in principle.</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Sample space S</div>
+        <div style="font-size: 44px; font-weight: 900; line-height: 1.1;">Every possible outcome, listed once</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">One die: S = {1, 2, 3, 4, 5, 6}. Two dice: 36 ordered pairs. A loan decision: S = {approve, reject}.</p>
+        <div style="margin-top: auto; font-size: 29px; font-weight: 700;">Outcomes must be exhaustive and mutually exclusive.</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Event A</div>
+        <div style="font-size: 44px; font-weight: 900; line-height: 1.1;">Any subset of S you care about</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">A = "the two dice sum to 7" is a set of six outcomes. An event happens when the realised outcome is inside it.</p>
+        <div style="margin-top: auto; font-size: 29px; font-weight: 700; color: #ff9783;">P(A) = favourable ÷ total, when outcomes are equally likely.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="36 outcomes" data-screen-label="05" data-speaker-notes="Ask for P(sum = 7) before revealing, then P(sum = 12), then P(sum > 9). The grid answers all three by counting." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">THE SAMPLE SPACE, DRAWN</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Two dice · sums shown</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Probability is counting, carefully</h2>
+    <div style="display: flex; gap: 48px; flex: 1;">
+      <div data-om-raster="true" style="display: grid; grid-template-columns: repeat(6, 88px); grid-auto-rows: 88px; gap: 3px; background: #201e1d; padding: 3px; height: fit-content;">
+        <div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">2</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">3</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">4</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">5</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">6</div><div style="background: #ec3013; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900;">7</div>
+        <div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">3</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">4</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">5</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">6</div><div style="background: #ec3013; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900;">7</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">8</div>
+        <div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">4</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">5</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">6</div><div style="background: #ec3013; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900;">7</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">8</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">9</div>
+        <div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">5</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">6</div><div style="background: #ec3013; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900;">7</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">8</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">9</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">10</div>
+        <div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">6</div><div style="background: #ec3013; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900;">7</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">8</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">9</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">10</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">11</div>
+        <div style="background: #ec3013; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900;">7</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">8</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">9</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">10</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">11</div><div style="background: #f3f2f2; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 700;">12</div>
+      </div>
+      <div style="flex: 1; border-left: 2px solid #201e1d; padding-left: 44px; display: flex; flex-direction: column; gap: 26px;">
+        <p style="margin: 0; font-size: 32px; line-height: 1.4;">The 36 cells are equally likely. Any event is a region of this grid, and its probability is the fraction of cells it covers.</p>
+        <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #ffe0d9; padding: 20px 26px; display: flex; justify-content: space-between; font-size: 32px; font-weight: 700; color: #7c1405;"><span>P(sum = 7)</span><span>6 / 36 = 0.167</span></div>
+          <div style="background: #f3f2f2; padding: 20px 26px; display: flex; justify-content: space-between; font-size: 32px; font-weight: 700;"><span>P(sum = 12)</span><span>1 / 36 = 0.028</span></div>
+          <div style="background: #f3f2f2; padding: 20px 26px; display: flex; justify-content: space-between; font-size: 32px; font-weight: 700;"><span>P(sum &gt; 9)</span><span>6 / 36 = 0.167</span></div>
+          <div style="background: #f3f2f2; padding: 20px 26px; display: flex; justify-content: space-between; font-size: 32px; font-weight: 700;"><span>P(both even)</span><span>9 / 36 = 0.250</span></div>
+        </div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">Note the trap: the 11 possible <em>sums</em> are not equally likely. The 36 ordered <em>pairs</em> are. Choose the sample space where symmetry actually holds.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Set operations" data-screen-label="06" data-speaker-notes="Translate the everyday words: 'or' means union and includes both; 'and' means intersection; 'not' means complement." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">NOTATION</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Words to symbols</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Three operations on events</h2>
+    <div data-om-raster="true" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 36px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px;">
+        <div style="font-size: 40px; font-weight: 900;">A ∪ B · union</div>
+        <div style="position: relative; width: 100%; height: 200px; border: 3px solid #201e1d; background: #eae9e9;">
+          <div style="position: absolute; left: 12%; top: 18%; width: 180px; height: 130px; border-radius: 50%; background: #ec3013; opacity: 0.85;"></div>
+          <div style="position: absolute; left: 40%; top: 18%; width: 180px; height: 130px; border-radius: 50%; background: #ec3013; opacity: 0.85;"></div>
+        </div>
+        <div style="font-size: 32px; font-weight: 700;">"A or B, or both"</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.35; color: #444141;">In everyday speech "or" often means one but not the other. In probability it always includes both.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 36px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px;">
+        <div style="font-size: 40px; font-weight: 900;">A ∩ B · intersection</div>
+        <div style="position: relative; width: 100%; height: 200px; border: 3px solid #201e1d; background: #eae9e9;">
+          <div style="position: absolute; left: 12%; top: 18%; width: 180px; height: 130px; border-radius: 50%; border: 3px solid #201e1d;"></div>
+          <div style="position: absolute; left: 40%; top: 18%; width: 180px; height: 130px; border-radius: 50%; border: 3px solid #201e1d;"></div>
+          <div style="position: absolute; left: 40%; top: 18%; width: 76px; height: 130px; border-radius: 0 50% 50% 0 / 0 50% 50% 0; background: #ec3013;"></div>
+        </div>
+        <div style="font-size: 32px; font-weight: 700;">"A and B together"</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.35; color: #444141;">Also written A ∩ B or simply AB. If it is empty, the events are mutually exclusive.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 36px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px;">
+        <div style="font-size: 40px; font-weight: 900;">A′ · complement</div>
+        <div style="position: relative; width: 100%; height: 200px; border: 3px solid #201e1d; background: #ec3013;">
+          <div style="position: absolute; left: 26%; top: 18%; width: 180px; height: 130px; border-radius: 50%; background: #f3f2f2; border: 3px solid #201e1d;"></div>
+        </div>
+        <div style="font-size: 32px; font-weight: 700;">"not A"</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.35; color: #444141;">Everything in S outside A. The single most useful trick in the whole topic.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Axioms" data-screen-label="07" data-speaker-notes="Every legitimate probability statement obeys all three. Use axiom 1 to kill claims like 'a 120% chance'." style="background: #ec3013; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;">THE FOUNDATION · KOLMOGOROV, 1933</div>
+    <div>
+      <h2 style="margin: 0 0 48px; font-size: 104px; font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; max-width: 24ch;">All of probability rests on three axioms</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #fff; padding: 4px;">
+        <div style="background: #ec3013; padding: 34px 36px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Axiom 1 · range</div>
+          <div style="font-size: 52px; font-weight: 900; margin: 16px 0;">0 ≤ P(A) ≤ 1</div>
+          <p style="margin: 0; font-size: 28px; line-height: 1.35;">A probability is never negative and never above one. "A 120% chance" is not a strong claim, it is a false one.</p>
+        </div>
+        <div style="background: #ec3013; padding: 34px 36px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Axiom 2 · certainty</div>
+          <div style="font-size: 52px; font-weight: 900; margin: 16px 0;">P(S) = 1</div>
+          <p style="margin: 0; font-size: 28px; line-height: 1.35;">Something in the sample space must happen. The probabilities of all outcomes sum to exactly one.</p>
+        </div>
+        <div style="background: #fff; color: #ae1800; padding: 34px 36px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Axiom 3 · addition</div>
+          <div style="font-size: 44px; font-weight: 900; margin: 16px 0;">P(A ∪ B) = P(A) + P(B)</div>
+          <p style="margin: 0; font-size: 28px; line-height: 1.35;">…provided A and B cannot both happen. Everything else today is derived from this one line.</p>
+        </div>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 34px; font-weight: 600; line-height: 1.35; max-width: 68ch;">Exam habit: before computing anything, check that the numbers you were given satisfy the axioms. Inconsistent data is a common trick question.</p>
+  </section>
+
+  <section data-label="Assigning probability" data-screen-label="08" data-speaker-notes="Most business probabilities are relative frequencies. Most forecasts are subjective. Say which one you are using." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">WHERE NUMBERS COME FROM</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Three legitimate sources</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">How do you get a probability at all?</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Classical</div>
+        <div style="font-size: 42px; font-weight: 900; line-height: 1.1;">Count the symmetric cases</div>
+        <div style="font-size: 32px; font-weight: 700;">P(A) = favourable ÷ total</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4; color: #444141;">Dice, cards, a fair lottery. Requires equally likely outcomes — which almost no business problem gives you.</p>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Relative frequency</div>
+        <div style="font-size: 42px; font-weight: 900; line-height: 1.1;">Count what happened before</div>
+        <div style="font-size: 32px; font-weight: 700;">P(A) ≈ times A occurred ÷ trials</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4; color: #d7d3d3;">260 of 400 loans approved → P(approval) ≈ 0.65. The workhorse of applied statistics, and what the whole course assumes.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Subjective</div>
+        <div style="font-size: 42px; font-weight: 900; line-height: 1.1;">A considered degree of belief</div>
+        <div style="font-size: 32px; font-weight: 700;">"70% chance the rate is cut"</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4; color: #444141;">Legitimate when there is no repeatable trial — a new product, a policy change. Must still obey all three axioms.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Complement rule" data-screen-label="09" data-speaker-notes="Teach the reflex: when a question says 'at least one', compute the complement. It comes back constantly next class." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">RULE 1 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">The laziest useful rule</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The complement rule</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 32px;">
+        <div style="font-size: 66px; font-weight: 800; font-style: italic;">P(A′) = 1 − P(A)</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #444141;">Direct from axioms 2 and 3: A and A′ cannot both happen, and together they fill S.</p>
+        <div style="border-top: 2px solid #201e1d; padding-top: 28px; font-size: 30px; font-weight: 700; line-height: 1.4;">Use it whenever counting the thing you want is harder than counting the thing you don't.</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 26px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Worked · call centre</div>
+        <p style="margin: 0; font-size: 32px; line-height: 1.4;">Historically 8% of calls are abandoned before an agent answers. Four independent calls arrive.</p>
+        <div style="font-size: 32px; font-weight: 600; line-height: 1.6;">P(at least one abandoned)<br>= 1 − P(none abandoned)<br>= 1 − (0.92)<sup>4</sup><br>= 1 − 0.716</div>
+        <div style="font-size: 76px; font-weight: 900; color: #ff9783; letter-spacing: -0.03em;">0.284</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4; color: #d7d3d3;">Listing every way "at least one" can happen takes fifteen cases. The complement takes one line.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Addition rule" data-screen-label="10" data-speaker-notes="Draw the two circles on the board and shade the overlap twice — that is why you subtract it once." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">RULE 2 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">"Or" questions</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The addition rule</h2>
+    <p style="margin: 0 0 32px; font-size: 32px; font-weight: 700; font-style: italic;">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Worked · 200 bank customers</div>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #f3f2f2; padding: 16px 24px; font-size: 30px; font-weight: 600;">Hold a debit card (D)</div><div style="background: #f3f2f2; padding: 16px 24px; font-size: 30px; font-weight: 800;">120</div>
+          <div style="background: #f3f2f2; padding: 16px 24px; font-size: 30px; font-weight: 600;">Hold a credit card (C)</div><div style="background: #f3f2f2; padding: 16px 24px; font-size: 30px; font-weight: 800;">60</div>
+          <div style="background: #ffe0d9; padding: 16px 24px; font-size: 30px; font-weight: 600; color: #7c1405;">Hold both (D ∩ C)</div><div style="background: #ffe0d9; padding: 16px 24px; font-size: 30px; font-weight: 800; color: #7c1405;">30</div>
+        </div>
+        <div style="font-size: 30px; font-weight: 600; line-height: 1.5;">P(D) = 120/200 = 0.60<br>P(C) = 60/200 = 0.30<br>P(D ∩ C) = 30/200 = 0.15</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">One customer picked at random</div>
+        <div style="font-size: 32px; font-weight: 600; line-height: 1.55;">P(D ∪ C) = 0.60 + 0.30 − 0.15</div>
+        <div style="font-size: 82px; font-weight: 900; color: #ff9783; letter-spacing: -0.03em;">0.75</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">Adding 0.60 and 0.30 alone gives 0.90 — it counts the 30 customers with both cards twice. Subtracting the overlap once fixes it.</p>
+        <div style="border-top: 2px solid #605d5d; padding-top: 22px; font-size: 30px; font-weight: 700;">And by the complement rule, P(neither card) = 1 − 0.75 = <strong>0.25</strong>, i.e. 50 customers.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Mutually exclusive" data-screen-label="11" data-speaker-notes="The special case is the one the exam gives you: if the events cannot overlap, the subtraction term is zero." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">SPECIAL CASE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">When the overlap is empty</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Mutually exclusive events</h2>
+    <div data-om-raster="true" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-size: 40px; font-weight: 900;">Overlapping</div>
+        <div style="position: relative; height: 210px; border: 3px solid #201e1d; background: #eae9e9;">
+          <div style="position: absolute; left: 14%; top: 20%; width: 190px; height: 130px; border-radius: 50%; border: 3px solid #201e1d; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; padding-right: 60px;">D</div>
+          <div style="position: absolute; left: 42%; top: 20%; width: 190px; height: 130px; border-radius: 50%; border: 3px solid #201e1d; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; padding-left: 60px;">C</div>
+        </div>
+        <div style="font-size: 32px; font-weight: 700; line-height: 1.4;">Debit card and credit card. P(D ∩ C) = 0.15, so the overlap must be subtracted.</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-size: 40px; font-weight: 900; color: #ec3013;">Mutually exclusive</div>
+        <div style="position: relative; height: 210px; border: 3px solid #201e1d; background: #eae9e9;">
+          <div style="position: absolute; left: 8%; top: 20%; width: 190px; height: 130px; border-radius: 50%; border: 3px solid #ec3013; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; color: #ae1800;">Approve</div>
+          <div style="position: absolute; right: 8%; top: 20%; width: 190px; height: 130px; border-radius: 50%; border: 3px solid #ec3013; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; color: #ae1800;">Reject</div>
+        </div>
+        <div style="font-size: 32px; font-weight: 700; line-height: 1.4;">One loan decision cannot be both. P(A ∩ R) = 0, so P(A ∪ R) = P(A) + P(R) = 1.</div>
+      </div>
+    </div>
+    <p style="margin: 36px 0 0; font-size: 32px; font-weight: 700; line-height: 1.35;">Mutually exclusive is a statement about <em>overlap</em>. Keep it separate in your head from independence, which is a statement about <em>information</em> — slide 16 puts them side by side.</p>
+  </section>
+
+  <section data-label="Quiz 1" data-screen-label="12" data-speaker-notes="Answers: 1-C (0.7, complement), 2-B (0.55 = 0.4 + 0.3 − 0.15), 3-D (impossible: P(A∩B) cannot exceed P(A))." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 40px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">CHECK · HANDS UP</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">4 minutes</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vote on each one</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">1 — P(a shipment is late) = 0.30. What is P(it is on time)?</div>
+        <div style="display: flex; gap: 52px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · 0.30</span><span>B · 0.50</span><span>C · 0.70</span><span>D · Cannot be found</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">2 — P(A) = 0.40, P(B) = 0.30, P(A ∩ B) = 0.15. Find P(A ∪ B).</div>
+        <div style="display: flex; gap: 52px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · 0.70</span><span>B · 0.55</span><span>C · 0.85</span><span>D · 0.12</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">3 — A report states P(A) = 0.20 and P(A ∩ B) = 0.35. What do you conclude?</div>
+        <div style="display: flex; gap: 52px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · B is very likely</span><span>B · A and B are independent</span><span>C · P(B) = 0.55</span><span>D · The figures are impossible</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Contingency table" data-screen-label="13" data-speaker-notes="This table drives the next three slides. Have them copy it. Every cell divided by 400 is a probability." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">REAL DATA</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">400 loan applications, one quarter</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The contingency table</h2>
+    <p style="margin: 0 0 32px; font-size: 30px; font-weight: 600; color: #444141;">Two categorical variables at once: where the applicant lives, and what the bank decided.</p>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 2px; background: #201e1d; padding: 2px;">
+      <div style="background: #201e1d; color: #fff; padding: 20px 28px; font-size: 26px; font-weight: 800; letter-spacing: 0.08em;"></div>
+      <div style="background: #201e1d; color: #fff; padding: 20px 28px; font-size: 26px; font-weight: 800; letter-spacing: 0.08em;">APPROVED (A)</div>
+      <div style="background: #201e1d; color: #fff; padding: 20px 28px; font-size: 26px; font-weight: 800; letter-spacing: 0.08em;">REJECTED (A′)</div>
+      <div style="background: #201e1d; color: #fff; padding: 20px 28px; font-size: 26px; font-weight: 800; letter-spacing: 0.08em;">TOTAL</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 32px; font-weight: 800;">Tashkent (T)</div>
+      <div style="background: #ffe0d9; padding: 26px 28px; font-size: 40px; font-weight: 900; color: #7c1405;">168</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 40px; font-weight: 800;">72</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 40px; font-weight: 800;">240</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 32px; font-weight: 800;">Other regions (T′)</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 40px; font-weight: 800;">92</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 40px; font-weight: 800;">68</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 40px; font-weight: 800;">160</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 32px; font-weight: 800;">Total</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 40px; font-weight: 800;">260</div>
+      <div style="background: #f3f2f2; padding: 26px 28px; font-size: 40px; font-weight: 800;">140</div>
+      <div style="background: #201e1d; color: #fff; padding: 26px 28px; font-size: 40px; font-weight: 900;">400</div>
+    </div>
+    <div style="display: flex; gap: 4px; margin-top: 36px; background: #201e1d; padding: 4px;">
+      <div style="background: #f3f2f2; padding: 26px 32px; flex: 1; font-size: 29px; line-height: 1.4;"><strong>Row and column totals</strong> are called <em>marginal</em> — they sit in the margins of the table.</div>
+      <div style="background: #f3f2f2; padding: 26px 32px; flex: 1; font-size: 29px; line-height: 1.4;"><strong>Inner cells</strong> are <em>joint</em> counts: both things true of the same applicant.</div>
+      <div style="background: #f3f2f2; padding: 26px 32px; flex: 1; font-size: 29px; line-height: 1.4;"><strong>Check first:</strong> rows and columns must both sum to 400, or the table is wrong.</div>
+    </div>
+  </section>
+
+  <section data-label="Joint & marginal" data-screen-label="14" data-speaker-notes="Emphasise the denominator. Joint divides by 400; conditional divides by the row total. Almost every mistake in this topic is a wrong denominator." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">READING THE TABLE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">It is all about the denominator</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Joint, marginal, conditional</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 38px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Marginal</div>
+        <div style="font-size: 38px; font-weight: 900; line-height: 1.1;">One event, whole sample</div>
+        <div style="font-size: 32px; font-weight: 600; line-height: 1.6;">P(A) = 260/400 = <strong>0.65</strong><br>P(T) = 240/400 = <strong>0.60</strong></div>
+        <p style="margin: auto 0 0; font-size: 28px; line-height: 1.4; color: #444141;">Divide a margin total by the grand total.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 38px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Joint</div>
+        <div style="font-size: 38px; font-weight: 900; line-height: 1.1;">Both events, whole sample</div>
+        <div style="font-size: 32px; font-weight: 600; line-height: 1.6;">P(A ∩ T) = 168/400 = <strong>0.42</strong><br>P(A′ ∩ T′) = 68/400 = <strong>0.17</strong></div>
+        <p style="margin: auto 0 0; font-size: 28px; line-height: 1.4; color: #444141;">Divide an inner cell by the grand total.</p>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 38px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Conditional</div>
+        <div style="font-size: 38px; font-weight: 900; line-height: 1.1;">One event, given the other</div>
+        <div style="font-size: 32px; font-weight: 600; line-height: 1.6;">P(A | T) = 168/<strong>240</strong> = <strong>0.70</strong><br>P(A | T′) = 92/<strong>160</strong> = <strong>0.575</strong></div>
+        <p style="margin: auto 0 0; font-size: 28px; line-height: 1.4; color: #d7d3d3;">The condition <em>shrinks the sample space</em> to one row. Full treatment next class.</p>
+      </div>
+    </div>
+    <p style="margin: 36px 0 0; font-size: 32px; font-weight: 700; line-height: 1.35;">Notice what just happened: knowing the applicant is from Tashkent moved the approval probability from 0.65 to 0.70. Information changed the number — so the two events are not independent.</p>
+  </section>
+
+  <section data-label="Multiplication rule" data-screen-label="15" data-speaker-notes="Two forms of the same rule: general, and the independent shortcut. Show the arithmetic that proves non-independence here." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">RULE 3 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">"And" questions</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The multiplication rule and independence</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 26px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">General form · always true</div>
+        <div style="font-size: 44px; font-weight: 800; font-style: italic; line-height: 1.3;">P(A ∩ B) = P(A) · P(B | A)</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">Read it as a sequence: A happens, and then B happens given that A did.</p>
+        <div style="border-top: 2px solid #201e1d; padding-top: 26px;">
+          <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013; margin-bottom: 18px;">Independent form · only if independent</div>
+          <div style="font-size: 44px; font-weight: 800; font-style: italic; line-height: 1.3;">P(A ∩ B) = P(A) · P(B)</div>
+          <p style="margin: 18px 0 0; font-size: 29px; line-height: 1.4; color: #444141;">A and B are <strong>independent</strong> when knowing one tells you nothing about the other: P(B | A) = P(B).</p>
+        </div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 40px 36px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Test our loan table</div>
+        <div style="font-size: 31px; font-weight: 600; line-height: 1.6;">If A and T were independent:<br>P(A) · P(T) = 0.65 × 0.60 = <strong>0.39</strong></div>
+        <div style="font-size: 31px; font-weight: 600; line-height: 1.6;">The table actually shows:<br>P(A ∩ T) = <strong>0.42</strong></div>
+        <div style="background: #ec3013; padding: 24px 28px; font-size: 34px; font-weight: 800; line-height: 1.3;">0.42 ≠ 0.39 → not independent</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">Region carries information about approval. Whether the gap is large enough to be more than sampling noise is a question for the chi-square test in week 11 — this is only the arithmetic.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Exclusive vs independent" data-screen-label="16" data-speaker-notes="The single most examined confusion in the topic. Mutually exclusive events with non-zero probability are always dependent — knowing one occurred tells you the other did not." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">THE CLASSIC CONFUSION</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Examined every year</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Mutually exclusive ≠ independent</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #201e1d; color: #fff; padding: 20px 28px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;"></div>
+      <div style="background: #201e1d; color: #fff; padding: 20px 28px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">MUTUALLY EXCLUSIVE</div>
+      <div style="background: #201e1d; color: #fff; padding: 20px 28px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">INDEPENDENT</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 30px; font-weight: 800;">The question it answers</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 29px; line-height: 1.35;">Can both happen at the same time?</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 29px; line-height: 1.35;">Does one carry information about the other?</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 30px; font-weight: 800;">Defining equation</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 30px; font-weight: 700; font-style: italic;">P(A ∩ B) = 0</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 30px; font-weight: 700; font-style: italic;">P(A ∩ B) = P(A) · P(B)</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 30px; font-weight: 800;">Example</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 29px; line-height: 1.35;">One loan is approved / rejected</div>
+      <div style="background: #f3f2f2; padding: 24px 28px; font-size: 29px; line-height: 1.35;">Two different customers default</div>
+      <div style="background: #ffe0d9; padding: 24px 28px; font-size: 30px; font-weight: 800; color: #7c1405;">Can they hold together?</div>
+      <div style="background: #ffe0d9; padding: 24px 28px; font-size: 29px; line-height: 1.35; color: #7c1405;" colspan="2">Only if one of the events has probability zero. If P(A) &gt; 0 and P(B) &gt; 0 and they are mutually exclusive, they are necessarily <strong>dependent</strong>.</div>
+      <div style="background: #ffe0d9; padding: 24px 28px; font-size: 29px; line-height: 1.35; color: #7c1405;">Learning that A occurred tells you B did not — that is information, so independence fails.</div>
+    </div>
+  </section>
+
+  <section data-label="Practice" data-screen-label="17" data-speaker-notes="25 minutes, groups of three. Insist every answer starts by naming the sample space or drawing the table." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">PRACTICE · IN CLASS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">25 minutes · groups of three</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Your turn</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 28px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ec3013;">A</span>
+        <div><div style="font-size: 33px; font-weight: 800; margin-bottom: 8px;">Write the sample space</div><div style="font-size: 29px; line-height: 1.4; color: #444141;">A customer is asked two yes/no questions. List S, then the event "at least one yes". How many outcomes does each contain?</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 28px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ec3013;">B</span>
+        <div><div style="font-size: 33px; font-weight: 800; margin-bottom: 8px;">Addition and complement</div><div style="font-size: 29px; line-height: 1.4; color: #444141;">Of 500 firms, 300 export, 200 import, 120 do both. Find P(exports or imports), P(neither), and P(exports only).</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 28px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ec3013;">C</span>
+        <div><div style="font-size: 33px; font-weight: 800; margin-bottom: 8px;">Build the table, then test independence</div><div style="font-size: 29px; line-height: 1.4; color: #444141;">Of 300 students, 180 are on a finance track and 120 on marketing; 90 finance students and 40 marketing students passed the statistics resit. Tabulate, find P(pass), P(pass | finance), and decide whether track and passing are independent.</div></div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 28px 40px; display: flex; gap: 36px;">
+        <span style="font-size: 38px; font-weight: 900; color: #ff9783;">D</span>
+        <div><div style="font-size: 33px; font-weight: 800; margin-bottom: 8px;">Find the error</div><div style="font-size: 29px; line-height: 1.4; color: #d7d3d3;">An analyst writes: "P(default) = 0.05 for each of our 3 largest borrowers, so P(at least one defaults) = 0.15." Two things are wrong. Name both, and give the correct figure if defaults are independent.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Glossary" data-screen-label="18" data-speaker-notes="Notation matters as much as vocabulary here. Insist on the vertical bar being read as 'given'." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">KEY TERMS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">English · Russian</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vocabulary for the exam</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Sample space S · пространство исходов</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">Every possible outcome, listed once</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Event · событие</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">A subset of S</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Union A ∪ B · объединение</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">A or B or both</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Intersection A ∩ B · пересечение</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">A and B together</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Complement A′ · дополнение</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">P(A′) = 1 − P(A)</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Mutually exclusive · несовместные</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">P(A ∩ B) = 0</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Independent · независимые</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">P(A ∩ B) = P(A) · P(B)</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Joint probability · совместная</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">Inner cell ÷ grand total</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Marginal probability · маргинальная</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">Margin total ÷ grand total</div></div>
+      <div style="background: #f3f2f2; padding: 22px 32px;"><div style="font-size: 31px; font-weight: 800;">Conditional P(A | B) · условная</div><div style="font-size: 26px; color: #444141; margin-top: 6px;">Read the bar as "given"</div></div>
+    </div>
+  </section>
+
+  <section data-label="Homework" data-screen-label="19" data-speaker-notes="Next class is the counting machinery — permutations and combinations — plus the 'at least one' technique in full. Tell them to bring a calculator with a factorial key." style="background: #201e1d; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #605d5d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.14em; color: #ff9783;">HOMEWORK · SELF-STUDY 7 HOURS</span>
+      <span style="font-size: 26px; font-weight: 700; color: #bab6b6;">Due at the start of class 2</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: start;">
+      <div>
+        <h2 style="margin: 0 0 40px; font-size: 84px; font-weight: 900; line-height: 0.98; letter-spacing: -0.035em;">Before next class</h2>
+        <div style="display: flex; flex-direction: column; gap: 28px; font-size: 34px; line-height: 1.35;">
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">A</span><span>Read Newbold ch. 4.1–4.4, or OpenStax ch. 3.1–3.3. Do the odd-numbered exercises at the end of the section.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">B</span><span>Finish practice exercises A–D and bring your answer to D written out — we start next class with it.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">C</span><span>Data project: state your question in one sentence and name your dataset. Due in week 3.</span></div>
+        </div>
+      </div>
+      <div style="border-left: 2px solid #605d5d; padding-left: 48px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783; margin-bottom: 24px;">Next class</div>
+        <div style="font-size: 46px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px;">Counting and independence</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #d7d3d3;">Permutations, combinations and tree diagrams — how to count the favourable cases when there are millions of them. Bring a calculator with a factorial key.</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 26px; font-weight: 600; color: #bab6b6; border-top: 2px solid #605d5d; padding-top: 24px;">
+      <span>Consultations: Thursday 14:00–18:00</span>
+      <span>STAT201 · Week 2 · Class 1</span>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

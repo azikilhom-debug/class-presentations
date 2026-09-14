@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #201e1d; font-family: "Archivo", system-ui, sans-serif; }
+  a { color: #ae1800; text-decoration: none; }
+  a:hover { color: #ec3013; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Title" data-screen-label="01" data-speaker-notes="Open with the fraud-alert question before any theory: your card is blocked, the system is 99% accurate — how worried should the bank be? Come back to it on slide 12." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em;">STAT201 · STATISTICS</span>
+      <span style="font-size: 26px; font-weight: 700; letter-spacing: 0.1em; color: #605d5d;">WEEK 3 · CLASS 1</span>
+    </div>
+    <div>
+      <div style="font-size: 30px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #ec3013; margin-bottom: 36px;">Topic 3 — Conditional probability</div>
+      <h1 style="margin: 0; font-size: 148px; font-weight: 900; line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; max-width: 20ch;">Conditional probability and Bayes</h1>
+      <p style="margin: 44px 0 0; font-size: 38px; font-weight: 500; line-height: 1.35; color: #444141; max-width: 50ch;">How new information changes a probability — and why a 99% accurate test is usually wrong when it fires.</p>
+    </div>
+    <div style="display: flex; gap: 72px; border-top: 2px solid #201e1d; padding-top: 24px; font-size: 26px; font-weight: 600; color: #605d5d;">
+      <span>2 academic hours</span>
+      <span>Theory + exercises + R</span>
+      <span>week02.R due today</span>
+    </div>
+  </section>
+
+  <section data-label="Recap" data-screen-label="02" data-speaker-notes="Collect week02.R. Birthday answer: 0.507 for 23 people — worth showing again, it primes them for counter-intuitive results." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 40px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">RECAP</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">One number from last week</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 76px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The birthday answer, and why it matters today</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 36px 38px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 26px; line-height: 1.75;">
+        <div><span style="color: #ff9783;">set.seed</span>(2026)</div>
+        <div>hit &lt;- <span style="color: #ff9783;">replicate</span>(100000, {</div>
+        <div>&nbsp;&nbsp;b &lt;- <span style="color: #ff9783;">sample</span>(1:365, 23, replace = <span style="color: #ff9783;">TRUE</span>)</div>
+        <div>&nbsp;&nbsp;<span style="color: #ff9783;">any</span>(<span style="color: #ff9783;">duplicated</span>(b))</div>
+        <div>})</div>
+        <div><span style="color: #ff9783;">mean</span>(hit)   <span style="color: #9b9797;"># 0.5073</span></div>
+        <div style="height: 16px;"></div>
+        <div style="color: #9b9797;"># exact, by the complement rule:</div>
+        <div>1 - <span style="color: #ff9783;">prod</span>(343:365 / 365)</div>
+        <div style="color: #9b9797;"># 0.5073</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Just over half</div>
+        <p style="margin: 0; font-size: 34px; font-weight: 700; line-height: 1.3;">In a group of 23 the probability that two share a birthday is 0.507 — most people guess about 5%.</p>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #444141;">Nothing was wrong with your intuition about <em>one</em> pair. There are 253 pairs, and intuition does not multiply.</p>
+        <div style="background: #ec3013; color: #fff; padding: 26px 30px; font-size: 30px; line-height: 1.4;">Today's material breaks intuition harder — and unlike the birthday problem, it decides who gets a loan, a diagnosis or a fraud block.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Outcomes" data-screen-label="03" data-speaker-notes="Warn them: this is the single most examined slide set of the semester. Part A of the midterm always includes a Bayes item." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 56px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">OUTCOMES</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">By the end of these two hours</span>
+    </div>
+    <h2 style="margin: 0 0 56px; font-size: 76px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">You will be able to</h2>
+    <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">01</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">Compute P(A | B) from a table or from probabilities, and say precisely which sample space you are in.</span></div>
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">02</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">Apply the law of total probability to break a messy problem into clean branches.</span></div>
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">03</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">State and use Bayes' theorem to reverse a conditional probability.</span></div>
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">04</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">Explain the base-rate fallacy to a non-statistician using natural frequencies.</span></div>
+      <div style="background: #f3f2f2; padding: 32px 40px; display: flex; gap: 40px; align-items: baseline;"><span style="font-size: 40px; font-weight: 900; color: #ec3013; min-width: 60px;">05</span><span style="font-size: 36px; font-weight: 600; line-height: 1.3;">Build and read a contingency table in R with <span style="font-family: 'JetBrains Mono', monospace;">table()</span> and <span style="font-family: 'JetBrains Mono', monospace;">prop.table()</span>.</span></div>
+    </div>
+  </section>
+
+  <section data-label="Conditional definition" data-screen-label="04" data-speaker-notes="The core sentence: conditioning shrinks the sample space. Draw S, draw B, and shade only inside B." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">THE DEFINITION</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Conditioning shrinks the sample space</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Conditional probability</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 42px 38px; display: flex; flex-direction: column; justify-content: center; gap: 32px;">
+        <div style="display: flex; align-items: center; gap: 26px;">
+          <span style="font-size: 50px; font-weight: 800; font-style: italic;">P(A | B) =</span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 42px; font-weight: 700; font-style: italic; padding: 0 18px 10px;">P(A ∩ B)</span>
+            <span style="border-top: 3px solid #201e1d; font-size: 42px; font-weight: 700; font-style: italic; padding: 10px 18px 0; width: 100%; text-align: center;">P(B)</span>
+          </span>
+        </div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #444141;">Defined whenever P(B) &gt; 0. Read the bar as <strong>"given"</strong>: the probability of A, in a world where B is already known to have happened.</p>
+        <div style="border-top: 2px solid #201e1d; padding-top: 26px; font-size: 30px; line-height: 1.45;">The denominator is no longer the whole sample space. B <em>is</em> the new sample space, and A ∩ B is the favourable part of it.</div>
+      </div>
+      <div data-om-raster="true" style="background: #f3f2f2; padding: 42px 38px; display: flex; flex-direction: column; gap: 26px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Before and after</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div>
+            <div style="position: relative; height: 190px; border: 3px solid #201e1d; background: #eae9e9;">
+              <div style="position: absolute; left: 10%; top: 18%; width: 46%; height: 130px; border-radius: 50%; border: 3px solid #201e1d;"></div>
+              <div style="position: absolute; right: 10%; top: 18%; width: 46%; height: 130px; border-radius: 50%; border: 3px solid #201e1d;"></div>
+              <div style="position: absolute; left: 45%; top: 30%; width: 11%; height: 88px; background: #ec3013;"></div>
+            </div>
+            <div style="font-size: 27px; font-weight: 700; margin-top: 12px;">Sample space S — P(A ∩ B) is a small slice of everything.</div>
+          </div>
+          <div>
+            <div style="position: relative; height: 190px; border: 3px dashed #bab6b6; background: #f3f2f2;">
+              <div style="position: absolute; right: 6%; top: 18%; width: 60%; height: 130px; border-radius: 50%; border: 3px solid #201e1d; background: #eae9e9;"></div>
+              <div style="position: absolute; left: 40%; top: 30%; width: 18%; height: 88px; background: #ec3013;"></div>
+            </div>
+            <div style="font-size: 27px; font-weight: 700; margin-top: 12px;">Given B, only B exists — the same slice is now a large share of it.</div>
+          </div>
+        </div>
+        <p style="margin: auto 0 0; font-size: 29px; line-height: 1.4; color: #444141;">Nothing about the world changed. Only what we know changed — and so the probability did.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="From the table" data-screen-label="05" data-speaker-notes="Same loan table as week 2. Make them state the denominator out loud each time before computing." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">FROM THE TABLE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">400 loan applications, as in week 2</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 68px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Every conditional is a change of denominator</h2>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 2px; background: #201e1d; padding: 2px; margin-bottom: 28px;">
+      <div style="background: #201e1d; color: #fff; padding: 16px 26px; font-size: 25px; font-weight: 800;"></div>
+      <div style="background: #201e1d; color: #fff; padding: 16px 26px; font-size: 25px; font-weight: 800;">APPROVED</div>
+      <div style="background: #201e1d; color: #fff; padding: 16px 26px; font-size: 25px; font-weight: 800;">REJECTED</div>
+      <div style="background: #201e1d; color: #fff; padding: 16px 26px; font-size: 25px; font-weight: 800;">TOTAL</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 30px; font-weight: 800;">Tashkent</div>
+      <div style="background: #ffe0d9; padding: 18px 26px; font-size: 34px; font-weight: 900; color: #7c1405;">168</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 34px; font-weight: 800;">72</div>
+      <div style="background: #ffe0d9; padding: 18px 26px; font-size: 34px; font-weight: 900; color: #7c1405;">240</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 30px; font-weight: 800;">Other regions</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 34px; font-weight: 800;">92</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 34px; font-weight: 800;">68</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 34px; font-weight: 800;">160</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 30px; font-weight: 800;">Total</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 34px; font-weight: 800;">260</div>
+      <div style="background: #f3f2f2; padding: 18px 26px; font-size: 34px; font-weight: 800;">140</div>
+      <div style="background: #201e1d; color: #fff; padding: 18px 26px; font-size: 34px; font-weight: 900;">400</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-size: 30px; font-weight: 800; font-style: italic;">P(A)</div>
+        <div style="font-size: 28px; color: #444141;">Denominator 400</div>
+        <div style="font-size: 40px; font-weight: 900; margin-top: auto;">260/400 = 0.65</div>
+      </div>
+      <div style="background: #ffe0d9; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-size: 30px; font-weight: 800; font-style: italic; color: #7c1405;">P(A | T)</div>
+        <div style="font-size: 28px; color: #7c1405;">Denominator 240 — the Tashkent row only</div>
+        <div style="font-size: 40px; font-weight: 900; margin-top: auto; color: #7c1405;">168/240 = 0.70</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-size: 30px; font-weight: 800; font-style: italic;">P(T | A)</div>
+        <div style="font-size: 28px; color: #444141;">Denominator 260 — the approved column</div>
+        <div style="font-size: 40px; font-weight: 900; margin-top: auto;">168/260 = 0.646</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 26px 28px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-size: 30px; font-weight: 800; color: #ff9783;">Not the same question</div>
+        <div style="font-size: 28px; line-height: 1.35; color: #d7d3d3;">"Approved, given Tashkent" and "from Tashkent, given approved" are different questions with different answers.</div>
+        <div style="font-size: 30px; font-weight: 800; margin-top: auto; color: #ff9783;">P(A|T) ≠ P(T|A)</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="The inversion error" data-screen-label="06" data-speaker-notes="Give the courtroom version too: P(matching DNA | innocent) is tiny, P(innocent | matching DNA) may not be. This confusion has jailed people." style="background: #ec3013; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;">THE ERROR THIS WHOLE CLASS EXISTS TO PREVENT</div>
+    <div>
+      <h2 style="margin: 0 0 44px; font-size: 104px; font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; max-width: 24ch;">P(A | B) is not P(B | A)</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #fff; padding: 4px;">
+        <div style="background: #ec3013; padding: 34px 36px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Almost everyone accepts</div>
+          <div style="font-size: 40px; font-weight: 800; margin: 16px 0; line-height: 1.25;">P(has four legs | is a dog) ≈ 1</div>
+          <p style="margin: 0; font-size: 29px; line-height: 1.35;">True, and unremarkable.</p>
+        </div>
+        <div style="background: #fff; color: #ae1800; padding: 34px 36px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">Nobody would then say</div>
+          <div style="font-size: 40px; font-weight: 800; margin: 16px 0; line-height: 1.25;">P(is a dog | has four legs) ≈ 1</div>
+          <p style="margin: 0; font-size: 29px; line-height: 1.35;">Obviously false — most four-legged things are not dogs.</p>
+        </div>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 36px; font-weight: 600; line-height: 1.35; max-width: 70ch;">With animals the inversion is obvious. With a fraud alert, a medical test or a credit score it is invisible — and it is made in newspapers, courtrooms and boardrooms every week. Bayes' theorem is the tool that converts one into the other correctly.</p>
+  </section>
+
+  <section data-label="Multiplication chain" data-screen-label="07" data-speaker-notes="Stress the without-replacement change: the second probability has a different denominator because the first card is gone." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">REARRANGED</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Sequences without replacement</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The multiplication rule, chained</h2>
+    <p style="margin: 0 0 32px; font-size: 32px; font-weight: 700; font-style: italic;">P(A ∩ B) = P(A) · P(B | A)&nbsp;&nbsp;&nbsp;→&nbsp;&nbsp;&nbsp;P(A ∩ B ∩ C) = P(A) · P(B | A) · P(C | A ∩ B)</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 38px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Worked · audit sampling</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">A file drawer holds 20 contracts, 5 of which are non-compliant. The auditor pulls two, without replacement.</p>
+        <div style="font-size: 30px; font-weight: 600; line-height: 1.7;">P(1st compliant) = 15/20 = 0.75<br>P(2nd compliant | 1st was) = 14/<strong>19</strong> = 0.737<br>P(both compliant) = 0.75 × 0.737</div>
+        <div style="font-size: 56px; font-weight: 900; letter-spacing: -0.02em; margin-top: auto;">0.553</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 38px 36px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Why not 0.75 × 0.75?</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">Because the first draw changed the drawer. Nineteen contracts remain, fourteen of them compliant. Drawing <em>without replacement</em> makes the draws dependent.</p>
+        <div style="border-top: 2px solid #605d5d; padding-top: 24px; font-size: 30px; line-height: 1.4;">With replacement — put the contract back — the draws are independent and 0.75 × 0.75 = 0.5625 is right.</div>
+        <div style="background: #ec3013; padding: 22px 26px; font-size: 29px; line-height: 1.4; margin-top: auto;">Rule of thumb: when the population is large relative to the sample, the difference is negligible and we treat draws as independent. That approximation runs through weeks 7–11.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Total probability" data-screen-label="08" data-speaker-notes="Emphasise the partition: the branches must be mutually exclusive and cover everything. That is what makes the weighted average legitimate." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">STEP TOWARDS BAYES</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">A weighted average of branches</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The law of total probability</h2>
+    <p style="margin: 0 0 28px; font-size: 32px; font-weight: 700; font-style: italic;">P(B) = P(B | A<sub>1</sub>)P(A<sub>1</sub>) + P(B | A<sub>2</sub>)P(A<sub>2</sub>) + … + P(B | A<sub>k</sub>)P(A<sub>k</sub>)</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 36px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Worked · three suppliers</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4;">A retailer sources phones from three suppliers. What share of all units is defective?</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #201e1d; color: #fff; padding: 12px 16px; font-size: 24px; font-weight: 800;">SUPPLIER</div>
+          <div style="background: #201e1d; color: #fff; padding: 12px 16px; font-size: 24px; font-weight: 800;">SHARE</div>
+          <div style="background: #201e1d; color: #fff; padding: 12px 16px; font-size: 24px; font-weight: 800;">DEFECT %</div>
+          <div style="background: #201e1d; color: #fff; padding: 12px 16px; font-size: 24px; font-weight: 800;">PRODUCT</div>
+          <div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px; font-weight: 700;">A</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.50</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.02</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.010</div>
+          <div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px; font-weight: 700;">B</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.30</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.04</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.012</div>
+          <div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px; font-weight: 700;">C</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.20</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.09</div><div style="background: #f3f2f2; padding: 14px 16px; font-size: 28px;">0.018</div>
+          <div style="background: #ffe0d9; padding: 14px 16px; font-size: 28px; font-weight: 800; color: #7c1405;">Total</div><div style="background: #ffe0d9; padding: 14px 16px; font-size: 28px; font-weight: 800; color: #7c1405;">1.00</div><div style="background: #ffe0d9; padding: 14px 16px; font-size: 28px; color: #7c1405;">—</div><div style="background: #ffe0d9; padding: 14px 16px; font-size: 28px; font-weight: 900; color: #7c1405;">0.040</div>
+        </div>
+        <div style="margin-top: auto; font-size: 30px; font-weight: 700;">P(defective) = <strong>0.04</strong> — four units in every hundred.</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 36px 34px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Two conditions on the branches</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;"><strong>Mutually exclusive</strong> — a unit comes from exactly one supplier.</p>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;"><strong>Exhaustive</strong> — the shares sum to 1, so no unit is unaccounted for.</p>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #d7d3d3;">Together this is called a <strong>partition</strong> of the sample space. Without it the weighted average is meaningless.</p>
+        <div style="background: #ec3013; padding: 24px 28px; font-size: 30px; line-height: 1.4; margin-top: auto;">Note what the 4% hides: supplier C ships 20% of units but produces 45% of the defects. The next slide asks exactly that question backwards.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Bayes" data-screen-label="09" data-speaker-notes="Write the theorem once, then immediately show that the denominator is just the law of total probability. Do not let it look like a new idea." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">THE THEOREM</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Reversing the condition</span>
+    </div>
+    <h2 style="margin: 0 0 30px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Bayes' theorem</h2>
+    <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; gap: 30px;">
+        <div style="display: flex; align-items: center; gap: 24px;">
+          <span style="font-size: 46px; font-weight: 800; font-style: italic;">P(A | B) =</span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 38px; font-weight: 700; font-style: italic; padding: 0 18px 10px;">P(B | A) · P(A)</span>
+            <span style="border-top: 3px solid #201e1d; font-size: 38px; font-weight: 700; font-style: italic; padding: 10px 18px 0; width: 100%; text-align: center;">P(B)</span>
+          </span>
+        </div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #444141;">It is not a new law. Write P(A ∩ B) two ways — P(A)P(B|A) and P(B)P(A|B) — set them equal, divide. Three lines of algebra.</p>
+        <div style="border-top: 2px solid #201e1d; padding-top: 24px; font-size: 29px; line-height: 1.5;">The denominator P(B) is almost always computed by the law of total probability:<br><em>P(B) = P(B|A)P(A) + P(B|A′)P(A′)</em></div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 40px 36px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">The four names</div>
+        <div style="display: flex; flex-direction: column; gap: 2px; background: #605d5d; padding: 2px;">
+          <div style="background: #201e1d; padding: 18px 24px;"><div style="font-size: 28px; font-weight: 800; color: #ff9783;">P(A) · prior</div><div style="font-size: 27px; color: #d7d3d3; margin-top: 4px;">What you believed before the evidence — the base rate.</div></div>
+          <div style="background: #201e1d; padding: 18px 24px;"><div style="font-size: 28px; font-weight: 800; color: #ff9783;">P(B | A) · likelihood</div><div style="font-size: 27px; color: #d7d3d3; margin-top: 4px;">How probable the evidence is if A is true.</div></div>
+          <div style="background: #201e1d; padding: 18px 24px;"><div style="font-size: 28px; font-weight: 800; color: #ff9783;">P(B) · evidence</div><div style="font-size: 27px; color: #d7d3d3; margin-top: 4px;">How probable the evidence is overall.</div></div>
+          <div style="background: #ec3013; padding: 18px 24px;"><div style="font-size: 28px; font-weight: 800;">P(A | B) · posterior</div><div style="font-size: 27px; margin-top: 4px;">What you should believe now.</div></div>
+        </div>
+        <p style="margin: auto 0 0; font-size: 28px; line-height: 1.4; color: #d7d3d3;">Bayes is the arithmetic of changing your mind by exactly the right amount.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Worked · supplier" data-screen-label="10" data-speaker-notes="Same numbers as slide 8, question reversed. This is the format most likely to appear in the midterm." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">WORKED EXAMPLE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">The supplier question, reversed</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 68px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">A defective unit arrives. Who sent it?</h2>
+    <p style="margin: 0 0 30px; font-size: 30px; font-weight: 600; color: #444141;">We know P(defective | supplier). The warranty desk needs P(supplier | defective).</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 36px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Step by step, for supplier C</div>
+        <div style="font-size: 29px; font-weight: 600; line-height: 1.75;">Prior: P(C) = 0.20<br>Likelihood: P(D | C) = 0.09<br>Evidence: P(D) = 0.04 <span style="color: #7d7979;">(slide 8)</span></div>
+        <div style="border-top: 2px solid #201e1d; padding-top: 20px; font-size: 29px; font-weight: 600; line-height: 1.7;">P(C | D) = (0.09 × 0.20) ÷ 0.04<br>= 0.018 ÷ 0.04</div>
+        <div style="font-size: 68px; font-weight: 900; letter-spacing: -0.03em; margin-top: auto;">0.45</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 36px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">All three posteriors</div>
+        <div style="display: flex; flex-direction: column; gap: 2px; background: #605d5d; padding: 2px;">
+          <div style="background: #201e1d; padding: 18px 24px; display: flex; justify-content: space-between; font-size: 29px; font-weight: 700;"><span>P(A | D) = 0.010 / 0.04</span><span>0.25</span></div>
+          <div style="background: #201e1d; padding: 18px 24px; display: flex; justify-content: space-between; font-size: 29px; font-weight: 700;"><span>P(B | D) = 0.012 / 0.04</span><span>0.30</span></div>
+          <div style="background: #ec3013; padding: 18px 24px; display: flex; justify-content: space-between; font-size: 29px; font-weight: 800;"><span>P(C | D) = 0.018 / 0.04</span><span>0.45</span></div>
+          <div style="background: #201e1d; padding: 18px 24px; display: flex; justify-content: space-between; font-size: 29px; font-weight: 700; color: #ff9783;"><span>Sum</span><span>1.00</span></div>
+        </div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">Posteriors over a partition always sum to 1 — your arithmetic check.</p>
+        <div style="background: #ec3013; padding: 22px 26px; font-size: 29px; line-height: 1.4; margin-top: auto;">Supplier C is a fifth of the volume and nearly half the defects. That single number is what the procurement meeting is about.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Base rate" data-screen-label="11" data-speaker-notes="Do this in natural frequencies first — 100 000 people on the board — and only then in symbols. Almost everyone gets it right with counts and wrong with percentages." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 28px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">THE BASE-RATE FALLACY</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">The fraud alert from slide 1</span>
+    </div>
+    <h2 style="margin: 0 0 14px; font-size: 68px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">A 99% accurate alert that is wrong 91% of the time</h2>
+    <p style="margin: 0 0 26px; font-size: 30px; font-weight: 600; color: #444141;">A bank's system flags 99% of fraudulent transactions, and wrongly flags only 1% of honest ones. One transaction in a thousand is fraudulent. Your card is blocked. Is it fraud?</p>
+    <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 32px 34px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Count 100 000 transactions</div>
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #201e1d; color: #fff; padding: 12px 18px; font-size: 24px; font-weight: 800;"></div>
+          <div style="background: #201e1d; color: #fff; padding: 12px 18px; font-size: 24px; font-weight: 800;">FLAGGED</div>
+          <div style="background: #201e1d; color: #fff; padding: 12px 18px; font-size: 24px; font-weight: 800;">NOT</div>
+          <div style="background: #201e1d; color: #fff; padding: 12px 18px; font-size: 24px; font-weight: 800;">TOTAL</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 27px; font-weight: 700;">Fraud</div>
+          <div style="background: #ffe0d9; padding: 16px 18px; font-size: 30px; font-weight: 900; color: #7c1405;">99</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 30px;">1</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 30px; font-weight: 700;">100</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 27px; font-weight: 700;">Honest</div>
+          <div style="background: #ffe0d9; padding: 16px 18px; font-size: 30px; font-weight: 900; color: #7c1405;">999</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 30px;">98 901</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 30px; font-weight: 700;">99 900</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 27px; font-weight: 800;">Total</div>
+          <div style="background: #201e1d; color: #fff; padding: 16px 18px; font-size: 30px; font-weight: 900;">1 098</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 30px; font-weight: 700;">98 902</div>
+          <div style="background: #f3f2f2; padding: 16px 18px; font-size: 30px; font-weight: 700;">100 000</div>
+        </div>
+        <div style="margin-top: auto; font-size: 30px; font-weight: 700; line-height: 1.4;">Of 1 098 blocked cards, only 99 are actually fraud.</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 32px 34px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">The same thing in symbols</div>
+        <div style="font-size: 28px; font-weight: 600; line-height: 1.65;">P(F) = 0.001 · P(+|F) = 0.99 · P(+|F′) = 0.01<br>P(+) = 0.99(0.001) + 0.01(0.999) = 0.01098</div>
+        <div style="font-size: 28px; font-weight: 600;">P(F | +) = 0.00099 ÷ 0.01098</div>
+        <div style="font-size: 78px; font-weight: 900; color: #ff9783; letter-spacing: -0.03em;">0.090</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4; color: #d7d3d3;">Nine per cent. The test is excellent; fraud is simply so rare that false alarms, drawn from a vastly larger honest population, outnumber true hits eleven to one.</p>
+        <div style="background: #ec3013; padding: 20px 24px; font-size: 28px; line-height: 1.4; margin-top: auto;">The evidence did work: 0.001 → 0.090 is a ninetyfold increase in probability. It just started from very far away.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Quiz" data-screen-label="12" data-speaker-notes="Answers: 1-B (0.30), 2-C (they are different questions), 3-B (the posterior falls, because the base rate is lower)." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 40px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">CHECK · HANDS UP</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">4 minutes</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vote on each one</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 30px 40px;">
+        <div style="font-size: 33px; font-weight: 800; margin-bottom: 14px;">1 — P(A ∩ B) = 0.12 and P(B) = 0.40. What is P(A | B)?</div>
+        <div style="display: flex; gap: 52px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · 0.048</span><span>B · 0.30</span><span>C · 0.52</span><span>D · 3.33</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 30px 40px;">
+        <div style="font-size: 33px; font-weight: 800; margin-bottom: 14px;">2 — "95% of defaulters had a low score, so 95% of low scorers will default." This is:</div>
+        <div style="display: flex; gap: 40px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · Correct</span><span>B · Correct if scores are independent</span><span>C · An inversion of the conditional</span><span>D · The law of total probability</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 30px 40px;">
+        <div style="font-size: 33px; font-weight: 800; margin-bottom: 14px;">3 — The same fraud system runs at a bank where only 1 in 10 000 transactions is fraud. P(fraud | flagged):</div>
+        <div style="display: flex; gap: 52px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · Stays 0.090</span><span>B · Falls to about 0.010</span><span>C · Rises</span><span>D · Becomes 0.99</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R · tables" data-screen-label="13" data-speaker-notes="Hour 2. Build the loan table from raw vectors so they see that a contingency table is just counted data, not a given." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">R · SESSION 2</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Conditional probability by machine</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Contingency tables in R</h2>
+    <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 32px 36px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 25px; line-height: 1.7;">
+        <div style="color: #9b9797;"># the week-2 loan table, entered directly</div>
+        <div>loans &lt;- <span style="color: #ff9783;">matrix</span>(<span style="color: #ff9783;">c</span>(168, 72, 92, 68), nrow = 2,</div>
+        <div>&nbsp;&nbsp;byrow = <span style="color: #ff9783;">TRUE</span>,</div>
+        <div>&nbsp;&nbsp;dimnames = <span style="color: #ff9783;">list</span>(region = <span style="color: #ffd7cd;">c</span>(<span style="color: #ffd7cd;">"Tashkent"</span>, <span style="color: #ffd7cd;">"Other"</span>),</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decision = <span style="color: #ffd7cd;">c</span>(<span style="color: #ffd7cd;">"Approved"</span>, <span style="color: #ffd7cd;">"Rejected"</span>)))</div>
+        <div style="height: 12px;"></div>
+        <div><span style="color: #ff9783;">addmargins</span>(loans)     <span style="color: #9b9797;"># row and column totals</span></div>
+        <div style="height: 12px;"></div>
+        <div style="color: #9b9797;"># joint probabilities — divide by 400</div>
+        <div><span style="color: #ff9783;">prop.table</span>(loans)</div>
+        <div style="height: 12px;"></div>
+        <div style="color: #9b9797;"># conditional on the ROW: P(decision | region)</div>
+        <div><span style="color: #ff9783;">prop.table</span>(loans, margin = 1)</div>
+        <div style="color: #9b9797;">#          Approved Rejected</div>
+        <div style="color: #9b9797;"># Tashkent    0.700    0.300</div>
+        <div style="color: #9b9797;"># Other       0.575    0.425</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 32px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">The margin argument is the whole idea</div>
+        <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #f3f2f2; padding: 18px 22px; font-size: 27px;"><strong style="font-family: 'JetBrains Mono', monospace;">prop.table(t)</strong> — joint, ÷ grand total</div>
+          <div style="background: #ffe0d9; padding: 18px 22px; font-size: 27px; color: #7c1405;"><strong style="font-family: 'JetBrains Mono', monospace;">margin = 1</strong> — rows sum to 1: P(col | row)</div>
+          <div style="background: #f3f2f2; padding: 18px 22px; font-size: 27px;"><strong style="font-family: 'JetBrains Mono', monospace;">margin = 2</strong> — columns sum to 1: P(row | col)</div>
+        </div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4;">Choosing the margin <em>is</em> choosing the denominator — the same decision you make by hand, now one argument.</p>
+        <div style="background: #201e1d; color: #fff; padding: 20px 24px; font-size: 27px; line-height: 1.4; margin-top: auto;">With raw data instead of counts: <span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">table(region, decision)</span> builds the same object from two columns of a data frame.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R · Bayes" data-screen-label="14" data-speaker-notes="Write the function together, line by line. Then change the prior to 1/10000 and watch the answer collapse — that is quiz question 3, live." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">R · SESSION 2</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Your first function</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Bayes as a reusable function</h2>
+    <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 32px 36px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 25px; line-height: 1.7;">
+        <div>bayes &lt;- <span style="color: #ff9783;">function</span>(prior, sens, fpr) {</div>
+        <div>&nbsp;&nbsp;evidence &lt;- sens * prior + fpr * (1 - prior)</div>
+        <div>&nbsp;&nbsp;(sens * prior) / evidence</div>
+        <div>}</div>
+        <div style="height: 14px;"></div>
+        <div style="color: #9b9797;"># the fraud alert from slide 11</div>
+        <div><span style="color: #ff9783;">bayes</span>(prior = 0.001, sens = 0.99, fpr = 0.01)</div>
+        <div style="color: #9b9797;"># 0.09016</div>
+        <div style="height: 14px;"></div>
+        <div style="color: #9b9797;"># rarer fraud — the quiz question</div>
+        <div><span style="color: #ff9783;">bayes</span>(0.0001, 0.99, 0.01)   <span style="color: #9b9797;"># 0.00980</span></div>
+        <div style="height: 14px;"></div>
+        <div style="color: #9b9797;"># how the answer moves with the base rate</div>
+        <div>p &lt;- <span style="color: #ff9783;">c</span>(0.0001, 0.001, 0.01, 0.05, 0.20)</div>
+        <div><span style="color: #ff9783;">round</span>(<span style="color: #ff9783;">bayes</span>(p, 0.99, 0.01), 3)</div>
+        <div style="color: #9b9797;"># 0.010 0.090 0.500 0.839 0.961</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 32px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Two things this shows</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4;"><strong>Functions.</strong> Write the logic once, name it, reuse it. Anything you compute more than twice should be a function.</p>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4;"><strong>Vectorisation.</strong> Pass a vector of five priors and get five answers — no loop. This is why R feels different from other languages.</p>
+        <div style="background: #ec3013; color: #fff; padding: 22px 26px; font-size: 28px; line-height: 1.4; margin-top: auto;">Read the last line as a sentence: the same test is worthless at a base rate of 1 in 10 000, a coin flip at 1%, and near-certain at 20%. The test never changed.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R · simulate Bayes" data-screen-label="15" data-speaker-notes="Simulation as proof: no formula here, just 200 000 imaginary transactions and a count. Same 0.09." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">R · SESSION 2</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Checking the theorem without the theorem</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Simulating the fraud alert</h2>
+    <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 32px 36px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 25px; line-height: 1.7;">
+        <div><span style="color: #ff9783;">set.seed</span>(2026)</div>
+        <div>n &lt;- 200000</div>
+        <div style="height: 10px;"></div>
+        <div style="color: #9b9797;"># 1. is the transaction fraudulent?</div>
+        <div>fraud &lt;- <span style="color: #ff9783;">runif</span>(n) &lt; 0.001</div>
+        <div style="height: 10px;"></div>
+        <div style="color: #9b9797;"># 2. does the system flag it?</div>
+        <div>flag &lt;- <span style="color: #ff9783;">ifelse</span>(fraud,</div>
+        <div style="padding-left: 2ch;"><span style="color: #ff9783;">runif</span>(n) &lt; 0.99,   <span style="color: #9b9797;"># caught</span></div>
+        <div style="padding-left: 2ch;"><span style="color: #ff9783;">runif</span>(n) &lt; 0.01)   <span style="color: #9b9797;"># false alarm</span></div>
+        <div style="height: 10px;"></div>
+        <div style="color: #9b9797;"># 3. among flagged, what share is fraud?</div>
+        <div><span style="color: #ff9783;">mean</span>(fraud[flag])       <span style="color: #9b9797;"># 0.0894</span></div>
+        <div style="height: 10px;"></div>
+        <div><span style="color: #ff9783;">table</span>(fraud, flag)</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 32px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Line 3 is conditioning</div>
+        <div style="background: #201e1d; color: #ff9783; padding: 22px 24px; font-family: 'JetBrains Mono', monospace; font-size: 27px;">fraud[flag]</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4;">"Keep only the flagged ones, then look at fraud." That square bracket <em>is</em> the shrunken sample space from slide 4 — R conditioning is literally subsetting.</p>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4; color: #444141;">0.0894 against the exact 0.0902. The gap is simulation noise, and it shrinks as n grows.</p>
+        <div style="background: #ffe0d9; color: #7c1405; padding: 22px 26px; font-size: 28px; line-height: 1.4; margin-top: auto;">Use this technique when you distrust your own algebra: build the world, count, compare. If the two disagree, one of them is wrong and you now know to look.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R lab" data-screen-label="16" data-speaker-notes="25 minutes. Exercise D is the one that matters — insist the sentence contains no jargon at all." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">R LAB · IN CLASS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">25 minutes · pairs · save as week03.R</span>
+    </div>
+    <h2 style="margin: 0 0 26px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Your turn at the machine</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 24px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">A</span>
+        <div><div style="font-size: 31px; font-weight: 800; margin-bottom: 6px;">Build a table</div><div style="font-size: 28px; line-height: 1.35; color: #444141;">300 students: 180 finance (90 passed), 120 marketing (40 passed). Build the matrix, then use <code style="font-family: 'JetBrains Mono', monospace;">prop.table(margin = 1)</code> to get P(pass | track).</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 24px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">B</span>
+        <div><div style="font-size: 31px; font-weight: 800; margin-bottom: 6px;">Reverse it</div><div style="font-size: 28px; line-height: 1.35; color: #444141;">Now compute P(finance | passed) with <code style="font-family: 'JetBrains Mono', monospace;">margin = 2</code>. Explain in one sentence why it differs from your answer in A.</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 24px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">C</span>
+        <div><div style="font-size: 31px; font-weight: 800; margin-bottom: 6px;">Use the bayes() function</div><div style="font-size: 28px; line-height: 1.35; color: #444141;">A screening test has sensitivity 0.98 and false-positive rate 0.05. Plot the posterior against priors from 0.001 to 0.5. At what base rate does a positive result first become more likely true than false?</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 24px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">D</span>
+        <div><div style="font-size: 31px; font-weight: 800; margin-bottom: 6px;">Write the explanation</div><div style="font-size: 28px; line-height: 1.35; color: #444141;">Three sentences a bank manager with no statistics could act on, explaining why most flagged cards are honest. No formulas, no jargon — use counts out of 100 000.</div></div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 24px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ff9783;">E</span>
+        <div><div style="font-size: 31px; font-weight: 800; margin-bottom: 6px;">Verify by simulation</div><div style="font-size: 28px; line-height: 1.35; color: #d7d3d3;">Take your answer to C at one chosen prior and confirm it with a 200 000-run simulation. Report both figures side by side.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Mistakes" data-screen-label="17" data-speaker-notes="Each of these costs marks in the midterm every single year. Read them slowly." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">EXAM CLINIC</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Where the marks go</span>
+    </div>
+    <h2 style="margin: 0 0 30px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Five mistakes, every year</h2>
+    <div style="display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #201e1d; color: #fff; padding: 16px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">THE MISTAKE</div>
+      <div style="background: #201e1d; color: #fff; padding: 16px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">THE FIX</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 29px; font-weight: 700;">Reporting P(B | A) when asked for P(A | B)</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">Underline the given in the question before writing anything. The word after "given" is the denominator.</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 29px; font-weight: 700;">Dividing by the grand total in a conditional</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">Conditioning shrinks the sample space. Divide by the row or column total, never by n.</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 29px; font-weight: 700;">Ignoring the base rate</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">A likelihood alone is never an answer. Ask "out of how many, in total?" and use natural frequencies.</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 29px; font-weight: 700;">Assuming independence to make it easier</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">Test it: P(A ∩ B) = P(A)P(B)? Without replacement, or with any shared cause, it usually fails.</div>
+      <div style="background: #ffe0d9; padding: 20px 30px; font-size: 29px; font-weight: 700; color: #7c1405;">Forgetting the posteriors must sum to 1</div>
+      <div style="background: #ffe0d9; padding: 20px 30px; font-size: 28px; line-height: 1.35; color: #7c1405;">Over a partition they always do. It costs five seconds and catches most arithmetic slips.</div>
+    </div>
+  </section>
+
+  <section data-label="Glossary" data-screen-label="18" data-speaker-notes="The four Bayes names — prior, likelihood, evidence, posterior — are examinable as vocabulary, not just as formula parts." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 30px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">KEY TERMS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Concepts · English / Russian, and R</span>
+    </div>
+    <h2 style="margin: 0 0 30px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vocabulary for the exam</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 28px 32px; display: flex; flex-direction: column;">
+        <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013; margin-bottom: 12px;">Concepts</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 28px;"><strong>Conditional probability</strong> · условная вероятность</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 28px;"><strong>Partition</strong> · разбиение — exclusive and exhaustive</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 28px;"><strong>Law of total probability</strong> · формула полной вероятности</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 28px;"><strong>Prior</strong> · априорная — belief before evidence</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 28px;"><strong>Likelihood</strong> · правдоподобие — P(evidence | cause)</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 28px;"><strong>Posterior</strong> · апостериорная — belief after evidence</div>
+        <div style="padding: 11px 0; font-size: 28px;"><strong>Base-rate fallacy</strong> · игнорирование базовой частоты</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 28px 32px; display: flex; flex-direction: column;">
+        <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783; margin-bottom: 12px;">R added this week</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid #605d5d; font-size: 27px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">matrix(..., dimnames =)</span> · a named table</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid #605d5d; font-size: 27px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">table(x, y)</span> · count two variables</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid #605d5d; font-size: 27px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">addmargins()</span> · row and column totals</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid #605d5d; font-size: 27px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">prop.table(t, margin =)</span> · joint or conditional</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid #605d5d; font-size: 27px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">function(x) { }</span> · write your own</div>
+        <div style="padding: 11px 0; border-bottom: 2px solid #605d5d; font-size: 27px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">ifelse(test, yes, no)</span> · vectorised choice</div>
+        <div style="padding: 11px 0; font-size: 27px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">x[condition]</span> · subsetting = conditioning</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Homework" data-screen-label="19" data-speaker-notes="Next class finishes topic 3 with Bayes practice and moves into random variables — the start of the modelling half of the course." style="background: #201e1d; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #605d5d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.14em; color: #ff9783;">HOMEWORK · SELF-STUDY 7 HOURS</span>
+      <span style="font-size: 26px; font-weight: 700; color: #bab6b6;">Due week 3, class 2</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: start;">
+      <div>
+        <h2 style="margin: 0 0 34px; font-size: 84px; font-weight: 900; line-height: 0.98; letter-spacing: -0.035em;">Before next class</h2>
+        <div style="display: flex; flex-direction: column; gap: 24px; font-size: 33px; line-height: 1.35;">
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">A</span><span>Submit <strong>week03.R</strong> — all five lab exercises, commented, reproducible.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">B</span><span>Problem set 3: six Bayes problems. For each, state the prior, the likelihood and the posterior <em>in words</em> before computing.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">C</span><span>Read Newbold ch. 4.5–4.7 again, then ch. 5.1 on random variables ahead of next week.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">D</span><span>Data project: build one contingency table from your dataset and report one conditional probability that surprised you.</span></div>
+        </div>
+      </div>
+      <div style="border-left: 2px solid #605d5d; padding-left: 48px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783; margin-bottom: 24px;">Next class</div>
+        <div style="font-size: 46px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px;">Bayes in practice, and random variables</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #d7d3d3;">Sequential updating — what happens when a second independent test also comes back positive — and then the shift from events to numbers that carries us through weeks 4 to 7.</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 26px; font-weight: 600; color: #bab6b6; border-top: 2px solid #605d5d; padding-top: 24px;">
+      <span>Consultations: Thursday 14:00–18:00</span>
+      <span>STAT201 · Week 3 · Class 1</span>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

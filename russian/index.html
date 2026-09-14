@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="ds-modernist.css" rel="stylesheet"/>
+<style>
+  body { margin: 0; background: #f3f2f2; color: #201e1d; font-family: "Archivo", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #ae1800; text-decoration: none; }
+  a:hover { color: #ec3013; }
+  a:focus-visible { outline: 2px solid #ec3013; outline-offset: 2px; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #f3f2f2;">
+<header style="display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; justify-content: space-between; padding: 20px 32px; border-bottom: 2px solid #201e1d;">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px;">
+<span style="font-size: 20px; font-weight: 900; letter-spacing: -0.02em;">TIU</span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #605d5d;">Tashkent International University</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #605d5d;">
+<span>STAT201</span>
+<span>3 семестр</span>
+<span>ECTS 5</span>
+</div>
+<a href="../index.html" style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ae1800;">← Выбор языка</a></header>
+<section style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
+<div style="padding: 48px 32px 40px; border-right: 2px solid #201e1d;">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #ec3013; margin-bottom: 20px;">Курс · Осень 2026</div>
+<h1 style="margin: 0 0 20px; font-size: clamp(48px, 7vw, 92px); font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; text-transform: uppercase;">Статистика</h1>
+<p style="margin: 0; max-width: 54ch; font-size: 17px; line-height: 1.5; color: #444141; text-wrap: pretty;">От описания набора данных до проверки гипотез. Пятнадцать недель описательной статистики, теории вероятностей, статистического вывода и регрессии для студентов экономики, финансов и менеджмента.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+<a href="week-1-class-2.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; background: #ec3013; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Открыть занятие этой недели →</a>
+<a href="#syllabus" style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; border: 2px solid #201e1d; color: #201e1d; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">Подробнее о силлабусе</a>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+<div style="padding: 24px; border-bottom: 2px solid #201e1d; border-right: 2px solid #201e1d;">
+<div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">150</div>
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Всего часов</div>
+</div>
+<div style="padding: 24px; border-bottom: 2px solid #201e1d;">
+<div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">15</div>
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Недель</div>
+</div>
+<div style="padding: 24px; border-bottom: 2px solid #201e1d; border-right: 2px solid #201e1d;">
+<div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">60</div>
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Контактные часы</div>
+</div>
+<div style="padding: 24px; border-bottom: 2px solid #201e1d;">
+<div style="font-size: 40px; font-weight: 900; letter-spacing: -0.03em;">90</div>
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d; margin-top: 6px;">Самостоятельная работа</div>
+</div>
+<div style="padding: 24px; border-right: 2px solid #201e1d;">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d;">Консультации</div>
+<div style="font-size: 20px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Четверг<br/>14:00 — 18:00</div>
+</div>
+<div style="padding: 24px;">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #605d5d;">Преподаватели</div>
+<div style="font-size: 15px; font-weight: 700; margin-top: 8px; line-height: 1.4;">Sh. Q. Xannayev, PhD<br/>S. Q. Shonazarov</div>
+</div>
+</div>
+</section>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 18px 32px; background: #ec3013; color: #fff; border-bottom: 2px solid #201e1d;">
+<div style="display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Правило посещаемости</span>
+<span style="font-size: 16px; font-weight: 600;">Пропуск 20 из 60 контактных часов (33%) без уважительной причины приводит к неудовлетворительному результату по дисциплине.</span>
+</div>
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="width: 180px; height: 12px; background: rgba(255,255,255,0.35);">
+<div style="height: 12px; background: #fff; width: {{ пропущеноPct }};"></div>
+</div>
+<span style="font-size: 15px; font-weight: 800; white-space: nowrap;">{{ пропущеноLabel }}</span>
+</div>
+</div>
+<section style="display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); border-bottom: 2px solid #201e1d;">
+<div style="border-right: 2px solid #201e1d;">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 22px 32px; border-bottom: 2px solid #201e1d;">
+<h2 style="margin: 0; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Материалы занятий</h2>
+<span style="font-size: 13px; font-weight: 600; color: #605d5d;">2 занятия в неделю · 2 ч + 2 ч</span>
+</div>
+<article style="padding: 28px 32px; border-bottom: 2px solid #201e1d;">
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px;">
+<span style="padding: 5px 10px; background: #201e1d; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">WEEK 01</span>
+<span style="padding: 5px 10px; background: #ffe0d9; color: #7c1405; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">{{ week1Status }}</span>
+<span style="font-size: 13px; font-weight: 600; color: #605d5d;">4 академических часа · 7 ч самостоятельной работы</span>
+</div>
+<h3 style="margin: 0 0 10px; font-size: clamp(26px, 3vw, 36px); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em;">Данные, описательная статистика и визуализация</h3>
+<p style="margin: 0 0 22px; max-width: 62ch; font-size: 16px; line-height: 1.5; color: #444141;">Типы данных; меры центра и разброса; асимметрия; гистограммы, box plot и диаграммы рассеяния; принципы корректной визуализации.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: #201e1d; padding: 2px;">
+<a href="week-1-class-1.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+<div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Занятие 1</div>
+<div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Типы данных, центр и разброс</div>
+<div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 слайдов · теория + задачи</div>
+</a>
+<a href="week-1-class-2.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+<div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Занятие 2</div>
+<div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Форма распределения, выбросы и графики</div>
+<div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 слайдов · теория + работа с графиками</div>
+</a>
+</div>
+</article>
+<article style="padding: 28px 32px; border-bottom: 2px solid #201e1d;">
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px;">
+<span style="padding: 5px 10px; background: #201e1d; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">WEEK 02</span>
+<span style="padding: 5px 10px; background: #ffe0d9; color: #7c1405; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">{{ week2Status }}</span>
+<span style="font-size: 13px; font-weight: 600; color: #605d5d;">4 академических часа · 7 ч самостоятельной работы</span>
+</div>
+<h3 style="margin: 0 0 10px; font-size: clamp(26px, 3vw, 36px); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em;">Основы теории вероятностей</h3>
+<p style="margin: 0 0 22px; max-width: 62ch; font-size: 16px; line-height: 1.5; color: #444141;">Пространство исходов и события; аксиомы Колмогорова; правила сложения и умножения; комбинаторика; независимость.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: #201e1d; padding: 2px;">
+<a href="week-2-class-1.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+<div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Занятие 1</div>
+<div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">События, аксиомы и правила</div>
+<div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 слайдов · теория + задачи</div>
+</a>
+<a href="week-2-class-2.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+<div style="display: flex; gap: 8px; align-items: center;">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Занятие 2</span>
+<span style="padding: 2px 7px; background: #201e1d; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.08em;">R</span>
+</div>
+<div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Комбинаторика, независимость и R</div>
+<div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 слайдов · теория + первое занятие по R</div>
+</a>
+</div>
+</article>
+<article style="padding: 28px 32px; border-bottom: 2px solid #201e1d;">
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px;">
+<span style="padding: 5px 10px; background: #201e1d; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">WEEK 03</span>
+<span style="padding: 5px 10px; background: #ffe0d9; color: #7c1405; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;">{{ week3Status }}</span>
+<span style="font-size: 13px; font-weight: 600; color: #605d5d;">4 академических часа · 7 ч самостоятельной работы</span>
+</div>
+<h3 style="margin: 0 0 10px; font-size: clamp(26px, 3vw, 36px); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em;">Условная вероятность и теорема Байеса</h3>
+<p style="margin: 0 0 22px; max-width: 62ch; font-size: 16px; line-height: 1.5; color: #444141;">Условная вероятность и сужение пространства исходов; формула полной вероятности; теорема Байеса; ошибка базовой частоты; таблицы сопряжённости в R.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: #201e1d; padding: 2px;">
+<a href="week-3-class-1.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+<div style="display: flex; gap: 8px; align-items: center;">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Занятие 1</span>
+<span style="padding: 2px 7px; background: #201e1d; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.08em;">R</span>
+</div>
+<div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Условная вероятность и Байес</div>
+<div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">19 слайдов · теория + занятие R №2</div>
+</a>
+<a href="week-3-class-2.html" style="display: block; padding: 18px; background: #f3f2f2;" style-hover="background: #ffe0d9;">
+<div style="display: flex; gap: 8px; align-items: center;">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Занятие 2</span>
+<span style="padding: 2px 7px; background: #201e1d; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.08em;">R</span>
+</div>
+<div style="font-size: 19px; font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;">Обновить оценку, принять решение, построить модель</div>
+<div style="font-size: 13px; font-weight: 600; color: #605d5d; margin-top: 10px;">15 слайдов · кейсы + решения + лабораторная R</div>
+</a>
+</div>
+</article>
+<div style="padding: 24px 32px; border-bottom: 2px solid #201e1d;">
+<h2 style="margin: 0 0 4px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Остальная часть семестра</h2>
+<p style="margin: 0; font-size: 13px; font-weight: 600; color: #605d5d;">Слайды публикуются за неделю до занятия.</p>
+</div>
+<sc-for as="w" hint-placeholder-count="6" list="{{ upcoming }}">
+<div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) auto; gap: 20px; align-items: center; padding: 14px 32px; border-bottom: 2px solid rgba(32,30,29,0.15);">
+<span style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; color: #7d7979;">{{ w.no }}</span>
+<span style="font-size: 16px; font-weight: 600; color: #444141;">{{ w.title }}</span>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9b9797;">{{ w.tag }}</span>
+</div>
+</sc-for>
+</div>
+<div>
+<div style="padding: 22px 28px; border-bottom: 2px solid #201e1d; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+<h2 style="margin: 0; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Новости</h2>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ec3013;">{{ newsCount }} new</span>
+</div>
+<sc-for as="n" hint-placeholder-count="4" list="{{ news }}">
+<article style="padding: 20px 28px; border-bottom: 2px solid rgba(32,30,29,0.15);">
+<div style="display: flex; gap: 12px; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">{{ n.tag }}</span>
+<span style="font-size: 12px; font-weight: 600; color: #7d7979;">{{ n.date }}</span>
+</div>
+<h3 style="margin: 0 0 6px; font-size: 17px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em;">{{ n.title }}</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #444141;">{{ n.body }}</p>
+</article>
+</sc-for>
+<div style="padding: 22px 28px; border-bottom: 2px solid #201e1d; border-top: 2px solid #201e1d;">
+<h2 style="margin: 0; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Дедлайны</h2>
+</div>
+<sc-for as="d" hint-placeholder-count="4" list="{{ deadlines }}">
+<div style="display: flex; gap: 16px; align-items: flex-start; padding: 16px 28px; border-bottom: 2px solid rgba(32,30,29,0.15);">
+<span style="min-width: 62px; font-size: 13px; font-weight: 800; letter-spacing: 0.06em; color: #ec3013;">{{ d.when }}</span>
+<div>
+<div style="font-size: 16px; font-weight: 700; line-height: 1.3;">{{ d.what }}</div>
+<div style="font-size: 13px; font-weight: 600; color: #7d7979; margin-top: 4px;">{{ d.note }}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+<section id="syllabus" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); border-bottom: 2px solid #201e1d;">
+<div style="padding: 28px 32px; border-right: 2px solid #201e1d;">
+<h2 style="margin: 0 0 22px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Оценивание</h2>
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Посещаемость и участие</span><span>15%</span></div>
+<div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 15%; background: #201e1d;"></div></div>
+</div>
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Самостоятельная работа и задания</span><span>25%</span></div>
+<div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 25%; background: #201e1d;"></div></div>
+</div>
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Промежуточный экзамен · неделя 8</span><span>20%</span></div>
+<div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 20%; background: #201e1d;"></div></div>
+</div>
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; margin-bottom: 6px;"><span>Итоговый экзамен · неделя 16</span><span>40%</span></div>
+<div style="height: 10px; background: #d7d3d3;"><div style="height: 10px; width: 40%; background: #ec3013;"></div></div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-top: 26px; background: #201e1d; padding: 2px;">
+<div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">A+</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">95+</div></div>
+<div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">A</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">90</div></div>
+<div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">B+</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">80</div></div>
+<div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">B</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">70</div></div>
+<div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">C+</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">65</div></div>
+<div style="background: #f3f2f2; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900;">C</div><div style="font-size: 11px; font-weight: 600; color: #605d5d;">60</div></div>
+<div style="background: #ffe0d9; padding: 10px 6px; text-align: center;"><div style="font-size: 15px; font-weight: 900; color: #7c1405;">F</div><div style="font-size: 11px; font-weight: 600; color: #7c1405;">0–59</div></div>
+</div>
+</div>
+<div style="padding: 28px 32px; border-right: 2px solid #201e1d;">
+<h2 style="margin: 0 0 8px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Самостоятельная работа · 7 часов на тему</h2>
+<p style="margin: 0 0 20px; font-size: 14px; font-weight: 600; color: #605d5d;">Три одинаковых вида работы по каждой из десяти оцениваемых тем плюс 20 часов подготовки к экзаменам. Всего 90 часов.</p>
+<div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+<div style="background: #f3f2f2; padding: 16px 18px; display: flex; gap: 16px;"><span style="font-size: 14px; font-weight: 900; color: #ec3013;">A</span><span style="font-size: 16px; font-weight: 600;">Изучить теорию по теме</span></div>
+<div style="background: #f3f2f2; padding: 16px 18px; display: flex; gap: 16px;"><span style="font-size: 14px; font-weight: 900; color: #ec3013;">B</span><span style="font-size: 16px; font-weight: 600;">Выполнить практические задачи</span></div>
+<div style="background: #f3f2f2; padding: 16px 18px; display: flex; gap: 16px;"><span style="font-size: 14px; font-weight: 900; color: #ec3013;">C</span><span style="font-size: 16px; font-weight: 600;">Продвинуть собственный проект по данным</span></div>
+</div>
+<p style="margin: 20px 0 0; font-size: 14px; line-height: 1.5; color: #444141;">Проект по данным выполняется весь семестр: один исследовательский вопрос, один набор данных и один письменный вывод. Итог — презентация или краткий визуальный отчёт.</p>
+</div>
+<div style="padding: 28px 32px;">
+<h2 style="margin: 0 0 20px; font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;">Литература</h2>
+<div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013; margin-bottom: 12px;">Основная</div>
+<ol style="margin: 0 0 24px; padding-left: 20px; display: flex; flex-direction: column; gap: 12px;">
+<li style="font-size: 15px; line-height: 1.45;"><strong>Newbold, Carlson &amp; Thorne</strong> — Statistics for Business and Economics, 10th ed., Pearson, 2023</li>
+<li style="font-size: 15px; line-height: 1.45;"><strong>Illowsky &amp; Dean</strong> — Introductory Statistics 2e, OpenStax, 2023 <em>(free)</em></li>
+<li style="font-size: 15px; line-height: 1.45;"><strong>James, Witten, Hastie &amp; Tibshirani</strong> — An Introduction to Statistical Learning with R, Springer, 2023</li>
+</ol>
+<div style="font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013; margin-bottom: 12px;">Дополнительная</div>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 9px; color: #444141;">
+<li style="font-size: 14px; line-height: 1.4;">Wooldridge — Introductory Econometrics, 7th ed.</li>
+<li style="font-size: 14px; line-height: 1.4;">Freedman, Pisani &amp; Purves — Statistics, 4th ed.</li>
+<li style="font-size: 14px; line-height: 1.4;">Diez, Barr &amp; Çetinkaya-Rundel — OpenIntro Statistics</li>
+<li style="font-size: 14px; line-height: 1.4;">Stock &amp; Watson — Introduction to Econometrics, 4th ed.</li>
+<li style="font-size: 14px; line-height: 1.4;">Wasserman — All of Statistics</li>
+</ul>
+</div>
+</section>
+<section style="padding:28px 32px;border-top:2px solid #201e1d;border-bottom:2px solid #201e1d;"><h2 style="margin:0 0 12px;font-size:28px;font-weight:900;">Русский силлабус</h2><p style="margin:0 0 16px;color:#444141;">Полная русская версия силлабуса доступна отдельным файлом.</p><a href="Statistika_rus_kunduzgi_Sillabus.docx" style="font-weight:800;color:#ae1800;">Открыть силлабус →</a></section><footer style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; padding: 24px 32px; font-size: 13px; font-weight: 600; color: #605d5d;">
+<span>STAT201 · Силлабус утверждён Советом TIU, протокол №16 от 25 июля 2026 г.</span>
+<span>Следующий курс: ECMT301 Эконометрика</span>
+</footer>
+</div>
+</x-dc>
+<script data-dc-script="" data-props='{"currentWeek":{"editor":"int","default":1,"min":1,"max":15,"tsType":"number","section":"Course state"},"hoursMissed":{"editor":"int","default":2,"min":0,"max":20,"unit":"h","tsType":"number","section":"Course state"},"showUpcomingWeeks":{"editor":"boolean","default":true,"tsType":"boolean","section":"Layout"}}' type="text/x-dc">
+class Component extends DCLogic {
+  renderVals() {
+    const current = this.props.currentWeek ?? 1;
+    const пропущено = this.props.hoursMissed ?? 2;
+    const rest = [
+      ["04", "Random variables and discrete distributions"],
+      ["05", "Continuous and normal distributions"],
+      ["06", "Joint distributions, covariance, correlation"],
+      ["07", "Sampling distributions and the CLT"],
+      ["08", "Revision and midterm exam"],
+      ["09", "Point and interval estimation"],
+      ["10", "Hypothesis testing I — means and proportions"],
+      ["11", "Hypothesis testing II — two samples and chi-square"],
+      ["12", "Simple linear regression"],
+      ["13", "Inference in regression; correlation vs causation"],
+      ["14", "Проект по данным lab and statistical communication"],
+      ["15", "Synthesis and exam preparation"]
+    ];
+    const upcoming = rest.map(([no, title]) => ({
+      no: "Week " + no,
+      title,
+      tag: no === "08" ? "Midterm" : no === "15" ? "Revision" : "Upcoming"
+    }));
+    const news = [
+      { tag: "R", date: "10 Sep", title: "R joins the course from week 2, class 2", body: "No installation needed — a free posit.cloud account in the browser is enough. Every topic from now on ends with an R session, and homework includes a commented .R file." },
+      { tag: "Announcement", date: "7 Sep", title: "Weeks 1–3 slides are live", body: "Five class decks published, each with worked examples, charts and a homework slide." },
+      { tag: "Проект по данным", date: "7 Sep", title: "Выберите набор данных к 3-й неделе", body: "Один вопрос, один набор данных, один вывод. Подойдут открытые данные stat.uz, Центрального банка или другого публичного источника." },
+      { tag: "Напоминание", date: "4 Sep", title: "Консультации начинаются в этот четверг", body: "Четверг 14:00–18:00, запись не требуется. Лучше приходить до срока сдачи задания." },
+      { tag: "Экзамен", date: "1 Sep", title: "Формат промежуточного экзамена подтверждён", body: "Неделя 8, written case. Part A: 15 short questions on probability and distributions. Part B: 3 computational problems. Tables and calculators allowed." }
+    ];
+    const deadlines = [
+      { when: "Неделя 2", what: "Практическое задание 1 — описательная статистика", note: "Сдать в начале занятия 1" },
+      { when: "Неделя 3", what: "Проект по данным — вопрос и набор данных", note: "Один абзац и ссылка" },
+      { when: "Неделя 3", what: "week02.R and week03.R", note: "С комментариями, воспроизводимо, запускается сверху вниз" },
+      { when: "Неделя 8", what: "Промежуточный экзамен", note: "Письменный кейс, 2 академических часа" },
+      { when: "Неделя 14", what: "Проект по данным — итоговая сдача", note: "Презентация или визуальный отчёт" },
+      { when: "Неделя 16", what: "Итоговый экзамен", note: "Части A, B и C · 40% итоговой оценки" }
+    ];
+    return {
+      upcoming: this.props.showUpcomingWeeks === false ? [] : upcoming,
+      news, deadlines,
+      newsCount: news.length,
+      week1Status: current === 1 ? "Сейчас изучаем" : current > 1 ? "Завершено" : "Опубликовано",
+      week2Status: current === 2 ? "Сейчас изучаем" : current > 2 ? "Завершено" : "Опубликовано",
+      week3Status: current === 3 ? "Сейчас изучаем" : current > 3 ? "Завершено" : "Опубликовано занятие 1",
+      пропущеноPct: Math.min(100, Math.round((пропущено / 20) * 100)) + "%",
+      пропущеноLabel: пропущено + " / 20 h пропущено"
+    };
+  }
+}
+</script>
+</body>
+</html>

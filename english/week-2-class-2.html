@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #201e1d; font-family: "Archivo", system-ui, sans-serif; }
+  a { color: #ae1800; text-decoration: none; }
+  a:hover { color: #ec3013; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Title" data-screen-label="01" data-speaker-notes="Two halves today: counting on paper for the first hour, then R for the second. Tell them R is now part of every remaining class." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em;">STAT201 · STATISTICS</span>
+      <span style="font-size: 26px; font-weight: 700; letter-spacing: 0.1em; color: #605d5d;">WEEK 2 · CLASS 2</span>
+    </div>
+    <div>
+      <div style="font-size: 30px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #ec3013; margin-bottom: 36px;">Topic 2 — Probability theory</div>
+      <h1 style="margin: 0; font-size: 148px; font-weight: 900; line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; max-width: 22ch;">Counting, independence and R</h1>
+      <p style="margin: 44px 0 0; font-size: 38px; font-weight: 500; line-height: 1.35; color: #444141; max-width: 50ch;">When the favourable cases run into millions you stop listing them and start counting them — then you let the machine do it.</p>
+    </div>
+    <div style="display: flex; gap: 72px; border-top: 2px solid #201e1d; padding-top: 24px; font-size: 26px; font-weight: 600; color: #605d5d;">
+      <span>2 academic hours</span>
+      <span>Theory + first R session</span>
+      <span>Laptop required from today</span>
+    </div>
+  </section>
+
+  <section data-label="Recap" data-screen-label="02" data-speaker-notes="Start with exercise D from last class: the two errors are (1) probabilities of overlapping events cannot simply be added, (2) the correct figure is 1 − 0.95³ = 0.143." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 40px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">RECAP</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Homework D, then forward</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 76px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Three rules, and the gap they leave</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; background: #201e1d; padding: 2px; margin-bottom: 40px;">
+      <div style="background: #f3f2f2; padding: 30px 34px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d;">Complement</div><div style="font-size: 38px; font-weight: 800; font-style: italic; margin-top: 12px;">P(A′) = 1 − P(A)</div></div>
+      <div style="background: #f3f2f2; padding: 30px 34px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d;">Addition</div><div style="font-size: 38px; font-weight: 800; font-style: italic; margin-top: 12px;">P(A∪B) = P(A)+P(B)−P(A∩B)</div></div>
+      <div style="background: #f3f2f2; padding: 30px 34px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d;">Multiplication</div><div style="font-size: 38px; font-weight: 800; font-style: italic; margin-top: 12px;">P(A∩B) = P(A)·P(B|A)</div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #ec3013; color: #fff; padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;">The gap</div>
+        <p style="margin: 0; font-size: 40px; font-weight: 700; line-height: 1.25;">Every classical probability is favourable ÷ total. Both numbers still have to be counted.</p>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">A committee of 4 from 20 students: 4 845 possibilities. Nobody lists them.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Today closes it, twice</div>
+        <p style="margin: 0; font-size: 32px; line-height: 1.4;"><strong>Hour 1 —</strong> the multiplication principle, permutations, combinations, tree diagrams.</p>
+        <p style="margin: 0; font-size: 32px; line-height: 1.4;"><strong>Hour 2 —</strong> the same problems in R, plus simulation: when the formula is hard, generate a million experiments instead.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Multiplication principle" data-screen-label="03" data-speaker-notes="Build the PIN example on the board before revealing the number. Then ask what changes if digits cannot repeat — that is the bridge to permutations." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">COUNTING · 1 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Everything else follows from this</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">The multiplication principle</h2>
+    <p style="margin: 0 0 36px; font-size: 32px; font-weight: 600; color: #444141;">If a task has <em>k</em> stages, and stage <em>i</em> can be done in n<sub>i</sub> ways, the whole task can be done in n<sub>1</sub> × n<sub>2</sub> × … × n<sub>k</sub> ways.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 38px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Bank PIN</div>
+        <div style="font-size: 34px; font-weight: 700; line-height: 1.4;">4 digits, repetition allowed</div>
+        <div style="font-size: 34px; font-weight: 600;">10 × 10 × 10 × 10</div>
+        <div style="font-size: 62px; font-weight: 900; letter-spacing: -0.02em;">10 000</div>
+        <p style="margin: auto 0 0; font-size: 27px; line-height: 1.35; color: #444141;">P(guessing on one try) = 0.0001.</p>
+      </div>
+      <div style="background: #f3f2f2; padding: 38px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Car plate</div>
+        <div style="font-size: 34px; font-weight: 700; line-height: 1.4;">2 letters then 3 digits</div>
+        <div style="font-size: 34px; font-weight: 600;">26 × 26 × 10 × 10 × 10</div>
+        <div style="font-size: 62px; font-weight: 900; letter-spacing: -0.02em;">676 000</div>
+        <p style="margin: auto 0 0; font-size: 27px; line-height: 1.35; color: #444141;">Stages need not have the same size.</p>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 38px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Order of coffee</div>
+        <div style="font-size: 34px; font-weight: 700; line-height: 1.4;">3 sizes × 4 milks × 2 syrups</div>
+        <div style="font-size: 34px; font-weight: 600;">3 × 4 × 2</div>
+        <div style="font-size: 62px; font-weight: 900; letter-spacing: -0.02em; color: #ff9783;">24</div>
+        <p style="margin: auto 0 0; font-size: 27px; line-height: 1.35; color: #d7d3d3;">The café menu claims "hundreds of combinations". Check the arithmetic.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Permutations" data-screen-label="04" data-speaker-notes="Key sentence: a permutation is an arrangement, so order matters. Podium finishes, passwords, rankings." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">COUNTING · 2 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Order matters</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Permutations</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 34px;">
+        <div style="display: flex; align-items: center; gap: 26px;">
+          <span style="font-size: 52px; font-weight: 800; font-style: italic;">P(n, k) =</span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 44px; font-weight: 700; font-style: italic; padding: 0 18px 10px;">n!</span>
+            <span style="border-top: 3px solid #201e1d; font-size: 44px; font-weight: 700; font-style: italic; padding: 10px 18px 0; width: 100%; text-align: center;">(n − k)!</span>
+          </span>
+        </div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #444141;">Choosing <em>k</em> items out of <em>n</em> and arranging them. No repetition.</p>
+        <div style="border-top: 2px solid #201e1d; padding-top: 26px; font-size: 30px; line-height: 1.5;"><strong>n! = n × (n−1) × … × 1</strong>, and 0! = 1 by definition — there is exactly one way to arrange nothing.</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 26px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Worked · student council</div>
+        <p style="margin: 0; font-size: 32px; line-height: 1.4;">Twelve candidates. Three <em>distinct</em> posts: chair, treasurer, secretary. How many outcomes?</p>
+        <div style="font-size: 34px; font-weight: 600; line-height: 1.6;">P(12, 3) = 12! ÷ 9!<br>= 12 × 11 × 10</div>
+        <div style="font-size: 84px; font-weight: 900; color: #ff9783; letter-spacing: -0.03em;">1 320</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">Anvar–Dilnoza–Rustam is a different council from Rustam–Anvar–Dilnoza. That is what "order matters" means in practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Combinations" data-screen-label="05" data-speaker-notes="Show the division: every unordered group of 3 was counted 3! = 6 times in the permutation figure. 1320 ÷ 6 = 220." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">COUNTING · 3 OF 3</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Order does not matter</span>
+    </div>
+    <h2 style="margin: 0 0 36px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Combinations</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 34px;">
+        <div style="display: flex; align-items: center; gap: 26px;">
+          <span style="font-size: 52px; font-weight: 800; font-style: italic;">C(n, k) =</span>
+          <span style="display: inline-flex; flex-direction: column; align-items: center;">
+            <span style="font-size: 44px; font-weight: 700; font-style: italic; padding: 0 18px 10px;">n!</span>
+            <span style="border-top: 3px solid #201e1d; font-size: 44px; font-weight: 700; font-style: italic; padding: 10px 18px 0; width: 100%; text-align: center;">k! (n − k)!</span>
+          </span>
+        </div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #444141;">The same selections, with the k! orderings of each group divided out. Also written <em>n</em> choose <em>k</em>.</p>
+        <div style="border-top: 2px solid #201e1d; padding-top: 26px; font-size: 30px; line-height: 1.5;">Always C(n, k) ≤ P(n, k), and C(n, k) = C(n, n−k) — choosing 4 to include is the same as choosing 8 to exclude.</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 44px 40px; display: flex; flex-direction: column; justify-content: center; gap: 26px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783;">Same twelve candidates</div>
+        <p style="margin: 0; font-size: 32px; line-height: 1.4;">Now a working group of three, all with equal standing. How many groups?</p>
+        <div style="font-size: 34px; font-weight: 600; line-height: 1.6;">C(12, 3) = 1 320 ÷ 3!<br>= 1 320 ÷ 6</div>
+        <div style="font-size: 84px; font-weight: 900; color: #ff9783; letter-spacing: -0.03em;">220</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">Six times fewer, because the six orderings of each trio are now the same group.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Which formula" data-screen-label="06" data-speaker-notes="Give them the test question: if I swap two chosen items with each other, do I have a different result? Yes = permutation, no = combination." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">DECISION TABLE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Photograph this slide</span>
+    </div>
+    <h2 style="margin: 0 0 20px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Which counting formula?</h2>
+    <p style="margin: 0 0 32px; font-size: 32px; font-weight: 700;">Ask one question: if I swap two of the chosen items with each other, is the result different?</p>
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr 1.3fr; gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">THE SITUATION</div>
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">FORMULA</div>
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">EXAMPLE</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 29px; line-height: 1.3;">k stages, each with its own options, repetition allowed</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">n<sub>1</sub> × … × n<sub>k</sub></div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 28px; line-height: 1.3;">PIN codes, menu combinations</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 29px; line-height: 1.3;">Arrange all n items in a row</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">n!</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 28px; line-height: 1.3;">Order of 8 presentations</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 29px; line-height: 1.3;">Pick k of n, order matters, no repetition</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">P(n, k) = n! ÷ (n−k)!</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 28px; line-height: 1.3;">Chair, treasurer, secretary</div>
+      <div style="background: #ffe0d9; padding: 22px 30px; font-size: 29px; line-height: 1.3; color: #7c1405;">Pick k of n, order irrelevant</div>
+      <div style="background: #ffe0d9; padding: 22px 30px; font-size: 30px; font-weight: 700; color: #7c1405;">C(n, k) = n! ÷ [k!(n−k)!]</div>
+      <div style="background: #ffe0d9; padding: 22px 30px; font-size: 28px; line-height: 1.3; color: #7c1405;">Committees, lottery tickets, samples</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 29px; line-height: 1.3;">Pick k of n with repetition, order matters</div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 30px; font-weight: 700; color: #ae1800;">n<sup>k</sup></div>
+      <div style="background: #f3f2f2; padding: 22px 30px; font-size: 28px; line-height: 1.3;">Passwords, dice thrown k times</div>
+    </div>
+    <p style="margin: 32px 0 0; font-size: 30px; font-weight: 600; color: #444141;">Sampling in statistics is almost always the combination row: a sample of 400 people is a set, not a ranking.</p>
+  </section>
+
+  <section data-label="Worked · lottery" data-screen-label="07" data-speaker-notes="Let them feel the size of 1/2 118 760. If a ticket costs 5000 UZS, expected loss per ticket is the whole point of week 4." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 36px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">WORKED EXAMPLE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Counting inside a probability</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">A quality inspection, and a lottery</h2>
+    <p style="margin: 0 0 32px; font-size: 30px; font-weight: 600; color: #444141;">Both are classical probabilities: count the favourable sets, count all sets, divide.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Inspection</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">A crate holds 20 units, 5 of them defective. An inspector draws 4 at random, without replacement.</p>
+        <div style="font-size: 29px; font-weight: 600; line-height: 1.65;">Total samples: C(20, 4) = <strong>4 845</strong><br>All good: C(15, 4) = <strong>1 365</strong><br>P(no defective) = 1365 / 4845 = <strong>0.282</strong></div>
+        <div style="margin-top: auto; background: #201e1d; color: #fff; padding: 22px 26px; font-size: 29px; line-height: 1.4;">P(at least one defective) = 1 − 0.282 = <strong>0.718</strong>. The complement rule again — 71.8% of inspections catch something.</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 40px 36px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Lottery · 6 from 49</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">Order of the drawn balls is irrelevant, so this is one combination out of all of them.</p>
+        <div style="font-size: 29px; font-weight: 600; line-height: 1.65;">C(49, 6) = 49! ÷ (6! · 43!)<br>= <strong>13 983 816</strong><br>P(jackpot on one ticket) = <strong>0.000 000 072</strong></div>
+        <div style="margin-top: auto; background: #ffe0d9; color: #7c1405; padding: 22px 26px; font-size: 29px; line-height: 1.4;">Buying 100 tickets a week for 50 years leaves the probability of ever winning at about 1.9%.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Tree diagrams" data-screen-label="08" data-speaker-notes="Two rules on one picture: multiply along a branch, add across branches. This is the visual form of the multiplication rule." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">SEQUENCES</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Multiply along, add across</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Tree diagrams</h2>
+    <div style="display: flex; gap: 44px; flex: 1;">
+      <div data-om-raster="true" style="flex: 1.25; display: grid; grid-template-columns: 130px 1fr 130px 1fr; align-items: center; gap: 0 20px; font-size: 27px; font-weight: 700;">
+        <div style="grid-row: 1 / span 4; display: flex; align-items: center; justify-content: center; background: #201e1d; color: #fff; padding: 22px 0; font-size: 29px;">2 calls</div>
+        <div style="grid-row: 1 / span 2; display: flex; flex-direction: column; gap: 8px; border-left: 3px solid #201e1d; padding-left: 20px;"><span style="color: #ae1800;">0.65 sale</span></div>
+        <div style="display: flex; justify-content: center;"><span style="background: #ffe0d9; color: #7c1405; padding: 12px 16px;">0.65 sale</span></div>
+        <div style="font-size: 29px;">0.65 × 0.65 = <strong>0.4225</strong> · two sales</div>
+        <div style="display: flex; justify-content: center;"><span style="background: #eae9e9; padding: 12px 16px;">0.35 none</span></div>
+        <div style="font-size: 29px;">0.65 × 0.35 = <strong>0.2275</strong> · one sale</div>
+        <div style="grid-row: 3 / span 2; display: flex; flex-direction: column; gap: 8px; border-left: 3px solid #201e1d; padding-left: 20px;"><span>0.35 none</span></div>
+        <div style="display: flex; justify-content: center;"><span style="background: #ffe0d9; color: #7c1405; padding: 12px 16px;">0.65 sale</span></div>
+        <div style="font-size: 29px;">0.35 × 0.65 = <strong>0.2275</strong> · one sale</div>
+        <div style="display: flex; justify-content: center;"><span style="background: #eae9e9; padding: 12px 16px;">0.35 none</span></div>
+        <div style="font-size: 29px;">0.35 × 0.35 = <strong>0.1225</strong> · no sale</div>
+      </div>
+      <div style="width: 520px; border-left: 2px solid #201e1d; padding-left: 40px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Two independent sales calls</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4;">Each call converts with probability 0.65, independently of the other.</p>
+        <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #f3f2f2; padding: 18px 24px; display: flex; justify-content: space-between; font-size: 29px; font-weight: 700;"><span>Exactly one sale</span><span>0.455</span></div>
+          <div style="background: #f3f2f2; padding: 18px 24px; display: flex; justify-content: space-between; font-size: 29px; font-weight: 700;"><span>At least one sale</span><span>0.8775</span></div>
+          <div style="background: #f3f2f2; padding: 18px 24px; display: flex; justify-content: space-between; font-size: 29px; font-weight: 700;"><span>All four paths</span><span>1.000</span></div>
+        </div>
+        <p style="margin: auto 0 0; font-size: 29px; line-height: 1.4; color: #444141;">The four end-probabilities always sum to 1 — that is axiom 2, and your check that the tree is right.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="At least one" data-screen-label="09" data-speaker-notes="Drive the pattern home: 1 − (1 − p)^n. Ask them to compute it for p = 0.02 and n = 50 — the answer, 0.64, surprises people." style="background: #ec3013; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;">THE PATTERN WORTH MEMORISING</div>
+    <div>
+      <h2 style="margin: 0 0 40px; font-size: 100px; font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; max-width: 26ch;">Rare events stop being rare when you repeat them</h2>
+      <div style="font-size: 56px; font-weight: 800; font-style: italic; margin-bottom: 40px;">P(at least one in n independent trials) = 1 − (1 − p)<sup>n</sup></div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: #fff; padding: 4px;">
+        <div style="background: #ec3013; padding: 28px 30px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">p = 0.02 · n = 1</div><div style="font-size: 52px; font-weight: 900; margin-top: 10px;">2%</div></div>
+        <div style="background: #ec3013; padding: 28px 30px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">n = 10</div><div style="font-size: 52px; font-weight: 900; margin-top: 10px;">18%</div></div>
+        <div style="background: #ec3013; padding: 28px 30px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">n = 50</div><div style="font-size: 52px; font-weight: 900; margin-top: 10px;">64%</div></div>
+        <div style="background: #fff; color: #ae1800; padding: 28px 30px;"><div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">n = 200</div><div style="font-size: 52px; font-weight: 900; margin-top: 10px;">98%</div></div>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 34px; font-weight: 600; line-height: 1.35; max-width: 68ch;">A 2% default rate per loan is comfortable. A portfolio of 200 such loans defaults somewhere almost certainly — and pricing that is the entire business of a credit department.</p>
+  </section>
+
+  <section data-label="Quiz 1" data-screen-label="10" data-speaker-notes="Answers: 1-B (combination, order irrelevant), 2-C (10⁴ = 10000), 3-A (1 − 0.9⁵ = 0.41)." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 40px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">CHECK · HANDS UP</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">4 minutes · before we open R</span>
+    </div>
+    <h2 style="margin: 0 0 40px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vote on each one</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">1 — Five auditors are chosen from a team of 15 to review one file together. Which formula?</div>
+        <div style="display: flex; gap: 48px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · P(15, 5)</span><span>B · C(15, 5)</span><span>C · 15<sup>5</sup></span><span>D · 15!</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">2 — A 4-digit PIN allows repeated digits. How many are possible?</div>
+        <div style="display: flex; gap: 48px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · 210</span><span>B · 5 040</span><span>C · 10 000</span><span>D · 24</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 32px 40px;">
+        <div style="font-size: 34px; font-weight: 800; margin-bottom: 16px;">3 — Each of 5 machines fails independently with probability 0.10. P(at least one fails)?</div>
+        <div style="display: flex; gap: 48px; font-size: 30px; font-weight: 600; color: #444141;"><span>A · 0.41</span><span>B · 0.50</span><span>C · 0.59</span><span>D · 0.00001</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R · why" data-screen-label="11" data-speaker-notes="Second hour starts here. Everyone opens posit.cloud or RStudio. Nobody installs anything during class time." style="background: #201e1d; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #605d5d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.16em; color: #ff9783;">HOUR 2 · R BEGINS</span>
+      <span style="font-size: 26px; font-weight: 700; color: #bab6b6;">Open posit.cloud or RStudio now</span>
+    </div>
+    <div>
+      <h2 style="margin: 0 0 44px; font-size: 96px; font-weight: 900; line-height: 0.96; letter-spacing: -0.035em; max-width: 26ch;">From this class on, every topic ends in R</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #605d5d; padding: 4px;">
+        <div style="background: #201e1d; padding: 32px 34px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #ff9783;">Why R and not a spreadsheet</div>
+          <p style="margin: 14px 0 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">A script is a record. Anyone — including you in June — can rerun it and get the identical number. A spreadsheet cannot be audited that way.</p>
+        </div>
+        <div style="background: #201e1d; padding: 32px 34px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #ff9783;">Why R and not a calculator</div>
+          <p style="margin: 14px 0 0; font-size: 29px; line-height: 1.4; color: #d7d3d3;">C(49, 6) is one keystroke. A million simulated experiments take under a second. Both are impossible by hand.</p>
+        </div>
+        <div style="background: #ec3013; padding: 32px 34px;">
+          <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;">What you need</div>
+          <p style="margin: 14px 0 0; font-size: 29px; line-height: 1.4;">Nothing installed: <strong>posit.cloud</strong> in a browser is enough. Free account, works on a phone in a pinch.</p>
+        </div>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 32px; font-weight: 600; line-height: 1.4; color: #bab6b6; max-width: 76ch;">R is examined the way arithmetic is: you will be asked what a short script returns, and to write four or five lines that answer a question. No package beyond base R is required in this course.</p>
+  </section>
+
+  <section data-label="R · first commands" data-screen-label="12" data-speaker-notes="Type every line live, slowly. Let them see an error on purpose — misspell lenght(x) — and read the message together." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">R · SESSION 1</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Type along</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Four ideas and you can use R</h2>
+    <p style="margin: 0 0 32px; font-size: 30px; font-weight: 600; color: #444141;">A value, a vector, a function, an assignment. Everything else in the course is a variation on these.</p>
+    <div style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 36px 38px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 27px; line-height: 1.75;">
+        <div style="color: #9b9797;"># a vector: the 12 cafés from week 1</div>
+        <div>rev &lt;- <span style="color: #ff9783;">c</span>(18, 22, 25, 27, 28, 30,</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30, 33, 36, 40, 44, 96)</div>
+        <div style="height: 14px;"></div>
+        <div><span style="color: #ff9783;">length</span>(rev)   <span style="color: #9b9797;"># 12</span></div>
+        <div><span style="color: #ff9783;">sum</span>(rev)      <span style="color: #9b9797;"># 429</span></div>
+        <div><span style="color: #ff9783;">mean</span>(rev)     <span style="color: #9b9797;"># 35.75</span></div>
+        <div><span style="color: #ff9783;">median</span>(rev)   <span style="color: #9b9797;"># 30</span></div>
+        <div><span style="color: #ff9783;">sd</span>(rev)       <span style="color: #9b9797;"># 20.33</span></div>
+        <div><span style="color: #ff9783;">quantile</span>(rev)</div>
+        <div><span style="color: #ff9783;">IQR</span>(rev)      <span style="color: #9b9797;"># 12</span></div>
+        <div><span style="color: #ff9783;">summary</span>(rev)  <span style="color: #9b9797;"># all five numbers at once</span></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 36px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Read it out loud</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4;"><strong>&lt;-</strong> is "gets". <code style="font-family: 'JetBrains Mono', monospace;">rev</code> gets that vector of twelve numbers.</p>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4;"><strong>c()</strong> combines values into a vector — the single most used function in R.</p>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4;"><strong>#</strong> starts a comment. R ignores it; your reader does not.</p>
+        <div style="margin-top: auto; background: #ffe0d9; color: #7c1405; padding: 22px 26px; font-size: 28px; line-height: 1.4;">Everything from week 1 — mean, median, sd, quartiles, IQR — is one function call. The judgement about which to report is still yours.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R · counting" data-screen-label="13" data-speaker-notes="Now redo every hand-computed figure from hour 1 and confirm they match. That agreement is the point of the slide." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">R · SESSION 1</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Hour 1, redone in six lines</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Counting in R</h2>
+    <div style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 36px 38px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 27px; line-height: 1.8;">
+        <div><span style="color: #ff9783;">factorial</span>(5)          <span style="color: #9b9797;"># 120</span></div>
+        <div style="height: 12px;"></div>
+        <div style="color: #9b9797;"># permutations P(12, 3)</div>
+        <div><span style="color: #ff9783;">factorial</span>(12) / <span style="color: #ff9783;">factorial</span>(9)</div>
+        <div style="color: #9b9797;"># 1320</div>
+        <div style="height: 12px;"></div>
+        <div style="color: #9b9797;"># combinations C(12, 3)</div>
+        <div><span style="color: #ff9783;">choose</span>(12, 3)         <span style="color: #9b9797;"># 220</span></div>
+        <div><span style="color: #ff9783;">choose</span>(49, 6)         <span style="color: #9b9797;"># 13983816</span></div>
+        <div style="height: 12px;"></div>
+        <div style="color: #9b9797;"># P(no defective in the crate)</div>
+        <div><span style="color: #ff9783;">choose</span>(15, 4) / <span style="color: #ff9783;">choose</span>(20, 4)</div>
+        <div style="color: #9b9797;"># 0.2817</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 36px 34px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Two functions, that is all</div>
+        <div style="display: flex; flex-direction: column; gap: 2px; background: #201e1d; padding: 2px;">
+          <div style="background: #f3f2f2; padding: 20px 24px; font-size: 29px;"><strong style="font-family: 'JetBrains Mono', monospace;">factorial(n)</strong> — n!</div>
+          <div style="background: #f3f2f2; padding: 20px 24px; font-size: 29px;"><strong style="font-family: 'JetBrains Mono', monospace;">choose(n, k)</strong> — C(n, k)</div>
+          <div style="background: #ffe0d9; padding: 20px 24px; font-size: 29px; color: #7c1405;">There is no <strong style="font-family: 'JetBrains Mono', monospace;">permutations()</strong> in base R — write it as the ratio of factorials.</div>
+        </div>
+        <p style="margin: auto 0 0; font-size: 29px; line-height: 1.4; color: #444141;">Every figure here matches what we did by hand in hour 1. That is how you check a script: reproduce one answer you already trust before you trust the rest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R · simulation" data-screen-label="14" data-speaker-notes="This is the intellectual jump of the class: when the formula is hard, run the experiment 100 000 times. Run it twice so they see the answer wobble." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">R · SESSION 1</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">When the formula is hard</span>
+    </div>
+    <h2 style="margin: 0 0 16px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Simulation: probability by brute force</h2>
+    <p style="margin: 0 0 28px; font-size: 30px; font-weight: 600; color: #444141;">Relative frequency, taken literally: run the experiment 100 000 times and count.</p>
+    <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 34px 38px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 26px; line-height: 1.75;">
+        <div><span style="color: #ff9783;">set.seed</span>(2026)   <span style="color: #9b9797;"># reproducible randomness</span></div>
+        <div style="height: 10px;"></div>
+        <div>d1 &lt;- <span style="color: #ff9783;">sample</span>(1:6, 100000, replace = <span style="color: #ff9783;">TRUE</span>)</div>
+        <div>d2 &lt;- <span style="color: #ff9783;">sample</span>(1:6, 100000, replace = <span style="color: #ff9783;">TRUE</span>)</div>
+        <div>total &lt;- d1 + d2</div>
+        <div style="height: 10px;"></div>
+        <div><span style="color: #ff9783;">mean</span>(total == 7)     <span style="color: #9b9797;"># 0.16644</span></div>
+        <div><span style="color: #ff9783;">mean</span>(total &gt; 9)      <span style="color: #9b9797;"># 0.16721</span></div>
+        <div style="height: 10px;"></div>
+        <div style="color: #9b9797;"># exact answers from slide 5 of class 1:</div>
+        <div style="color: #9b9797;"># 6/36 = 0.16667 · 6/36 = 0.16667</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 34px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">Three things to notice</div>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4;"><strong>total == 7</strong> produces 100 000 TRUE/FALSE values; <strong>mean()</strong> of those is the proportion of TRUEs. That idiom appears in every simulation you will write.</p>
+        <p style="margin: 0; font-size: 28px; line-height: 1.4;"><strong>set.seed()</strong> fixes the random stream so your result is reproducible. Without it your answer changes on every run.</p>
+        <div style="margin-top: auto; background: #ec3013; color: #fff; padding: 22px 26px; font-size: 28px; line-height: 1.4;">Simulation gets close, never exact. More runs, closer answer — the precise statement of that is the Central Limit Theorem in week 7.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R · plots" data-screen-label="15" data-speaker-notes="One line per chart. Point out that R gives ugly defaults on purpose — labelling is your job, exactly as in the week 1 chart lab." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">R · SESSION 1</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Week 1's three charts, one line each</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Charts in base R</h2>
+    <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #201e1d; color: #f3f2f2; padding: 34px 38px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 25px; line-height: 1.7;">
+        <div style="color: #9b9797;"># histogram, and the same with 4 bins</div>
+        <div><span style="color: #ff9783;">hist</span>(rev, main = <span style="color: #ffd7cd;">"Café revenue"</span>,</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp; xlab = <span style="color: #ffd7cd;">"mln UZS"</span>)</div>
+        <div><span style="color: #ff9783;">hist</span>(rev, breaks = 4)</div>
+        <div style="height: 12px;"></div>
+        <div style="color: #9b9797;"># box plot — outliers marked automatically</div>
+        <div><span style="color: #ff9783;">boxplot</span>(rev, horizontal = <span style="color: #ff9783;">TRUE</span>)</div>
+        <div><span style="color: #ff9783;">boxplot.stats</span>(rev)$out   <span style="color: #9b9797;"># 96</span></div>
+        <div style="height: 12px;"></div>
+        <div style="color: #9b9797;"># scatter plot of two variables</div>
+        <div>ads &lt;- <span style="color: #ff9783;">c</span>(1.0,1.4,1.6,1.8,2.0,2.2,2.3,2.6,2.9,3.2,3.6,5.0)</div>
+        <div><span style="color: #ff9783;">plot</span>(ads, rev, pch = 16,</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp; xlab = <span style="color: #ffd7cd;">"Advertising"</span>, ylab = <span style="color: #ffd7cd;">"Revenue"</span>)</div>
+      </div>
+      <div style="background: #f3f2f2; padding: 34px 34px; display: flex; flex-direction: column; gap: 20px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013;">The one to remember</div>
+        <div style="background: #201e1d; color: #ff9783; padding: 24px 26px; font-family: 'JetBrains Mono', monospace; font-size: 27px;">boxplot.stats(rev)$out</div>
+        <p style="margin: 0; font-size: 29px; line-height: 1.4;">This returns exactly the values beyond the 1.5 × IQR fences we computed by hand last week. R applies the same rule — it does not know more than you do.</p>
+        <div style="margin-top: auto; background: #ffe0d9; color: #7c1405; padding: 22px 26px; font-size: 28px; line-height: 1.4;">R will never tell you the bin width is misleading or the axis is truncated. Chart judgement stays human.</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R lab" data-screen-label="16" data-speaker-notes="30 minutes at the machines, pairs. Circulate. Require a saved .R file, not console history." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">R LAB · IN CLASS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">30 minutes · pairs · save as week02.R</span>
+    </div>
+    <h2 style="margin: 0 0 28px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Your turn at the machine</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 26px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">A</span>
+        <div><div style="font-size: 32px; font-weight: 800; margin-bottom: 6px;">Recreate week 1</div><div style="font-size: 28px; line-height: 1.4; color: #444141;">Enter the 12 revenues, then produce mean, median, sd, IQR and <code style="font-family: 'JetBrains Mono', monospace;">summary()</code>. Confirm every number against your notes.</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 26px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">B</span>
+        <div><div style="font-size: 32px; font-weight: 800; margin-bottom: 6px;">Count the inspection</div><div style="font-size: 28px; line-height: 1.4; color: #444141;">Using <code style="font-family: 'JetBrains Mono', monospace;">choose()</code>, compute P(exactly one defective) and P(at least one) for the 20-unit crate. Check they and P(none) sum to 1.</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 26px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">C</span>
+        <div><div style="font-size: 32px; font-weight: 800; margin-bottom: 6px;">Simulate the sales calls</div><div style="font-size: 28px; line-height: 1.4; color: #444141;">Two independent calls, p = 0.65. Simulate 100 000 pairs and estimate P(exactly one sale). Compare with the 0.455 from the tree diagram.</div></div>
+      </div>
+      <div style="background: #f3f2f2; padding: 26px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ec3013;">D</span>
+        <div><div style="font-size: 32px; font-weight: 800; margin-bottom: 6px;">The birthday question</div><div style="font-size: 28px; line-height: 1.4; color: #444141;">In a group of 23 people, simulate the probability that two share a birthday. Most people guess under 10%. Then explain the answer with the complement rule.</div></div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 26px 40px; display: flex; gap: 34px;">
+        <span style="font-size: 36px; font-weight: 900; color: #ff9783;">E</span>
+        <div><div style="font-size: 32px; font-weight: 800; margin-bottom: 6px;">Comment every block</div><div style="font-size: 28px; line-height: 1.4; color: #d7d3d3;">One <code style="font-family: 'JetBrains Mono', monospace;">#</code> line above each answer saying what it computes. Uncommented scripts lose marks from now on.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="R errors" data-screen-label="17" data-speaker-notes="Read each error message aloud as R prints it. Learning to read the message is 80% of learning R." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em; color: #ec3013;">SURVIVAL GUIDE</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">The five errors everyone hits today</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">When R complains</h2>
+    <div style="display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 2px; background: #201e1d; padding: 2px; flex: 1;">
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">WHAT YOU SEE</div>
+      <div style="background: #201e1d; color: #fff; padding: 18px 30px; font-size: 25px; font-weight: 800; letter-spacing: 0.08em;">WHAT IT MEANS</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-family: 'JetBrains Mono', monospace; font-size: 26px;">could not find function "lenght"</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">A typo. R is case-sensitive and spelling-sensitive: <code style="font-family: 'JetBrains Mono', monospace;">Mean()</code> is not <code style="font-family: 'JetBrains Mono', monospace;">mean()</code>.</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-family: 'JetBrains Mono', monospace; font-size: 26px;">object 'rev2' not found</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">You used a name you never assigned — or you assigned it in a line you did not actually run.</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-family: 'JetBrains Mono', monospace; font-size: 26px;">+ (the console will not return)</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">An unclosed bracket or quote. Press Esc and retype the line.</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-family: 'JetBrains Mono', monospace; font-size: 26px;">NA returned by mean()</div>
+      <div style="background: #f3f2f2; padding: 20px 30px; font-size: 28px; line-height: 1.35;">A missing value in the data. Use <code style="font-family: 'JetBrains Mono', monospace;">mean(x, na.rm = TRUE)</code> — and say in the write-up how many were missing.</div>
+      <div style="background: #ffe0d9; padding: 20px 30px; font-family: 'JetBrains Mono', monospace; font-size: 26px; color: #7c1405;">a different answer every run</div>
+      <div style="background: #ffe0d9; padding: 20px 30px; font-size: 28px; line-height: 1.35; color: #7c1405;">Simulation without <code style="font-family: 'JetBrains Mono', monospace;">set.seed()</code>. Not an error — but not reproducible, so not acceptable in a submission.</div>
+    </div>
+  </section>
+
+  <section data-label="Glossary" data-screen-label="18" data-speaker-notes="Half vocabulary, half R. Both halves are examinable in week 8." style="background: #f3f2f2; color: #201e1d; font-family: Archivo, system-ui, sans-serif; padding: 88px 112px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #201e1d; padding-bottom: 20px; margin-bottom: 32px;">
+      <span style="font-size: 24px; font-weight: 800; letter-spacing: 0.14em;">KEY TERMS</span>
+      <span style="font-size: 24px; font-weight: 700; color: #605d5d;">Concepts · English / Russian, and R</span>
+    </div>
+    <h2 style="margin: 0 0 32px; font-size: 72px; font-weight: 900; line-height: 1; letter-spacing: -0.03em;">Vocabulary for the exam</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: #201e1d; padding: 4px; flex: 1;">
+      <div style="background: #f3f2f2; padding: 30px 34px; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ec3013; margin-bottom: 14px;">Concepts</div>
+        <div style="padding: 12px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 29px;"><strong>Multiplication principle</strong> · правило умножения</div>
+        <div style="padding: 12px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 29px;"><strong>Factorial n!</strong> · факториал</div>
+        <div style="padding: 12px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 29px;"><strong>Permutation</strong> · размещение — order matters</div>
+        <div style="padding: 12px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 29px;"><strong>Combination</strong> · сочетание — order irrelevant</div>
+        <div style="padding: 12px 0; border-bottom: 2px solid rgba(32,30,29,0.15); font-size: 29px;"><strong>Tree diagram</strong> · дерево исходов</div>
+        <div style="padding: 12px 0; font-size: 29px;"><strong>Simulation</strong> · имитационное моделирование</div>
+      </div>
+      <div style="background: #201e1d; color: #fff; padding: 30px 34px; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 25px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783; margin-bottom: 14px;">R functions so far</div>
+        <div style="padding: 12px 0; border-bottom: 2px solid #605d5d; font-size: 28px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">c()</span> · combine values into a vector</div>
+        <div style="padding: 12px 0; border-bottom: 2px solid #605d5d; font-size: 28px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">mean, median, sd, IQR, quantile, summary</span></div>
+        <div style="padding: 12px 0; border-bottom: 2px solid #605d5d; font-size: 28px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">factorial(n)</span> · <span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">choose(n, k)</span></div>
+        <div style="padding: 12px 0; border-bottom: 2px solid #605d5d; font-size: 28px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">sample(x, n, replace = TRUE)</span></div>
+        <div style="padding: 12px 0; border-bottom: 2px solid #605d5d; font-size: 28px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">set.seed()</span> · reproducible randomness</div>
+        <div style="padding: 12px 0; font-size: 28px;"><span style="font-family: 'JetBrains Mono', monospace; color: #ff9783;">hist, boxplot, plot</span> · the three charts</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Homework" data-screen-label="19" data-speaker-notes="From now on homework has an R component. Week 3 is conditional probability and Bayes — the hardest reasoning of the semester." style="background: #201e1d; color: #fff; font-family: Archivo, system-ui, sans-serif; padding: 96px 112px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #605d5d; padding-bottom: 24px;">
+      <span style="font-size: 26px; font-weight: 800; letter-spacing: 0.14em; color: #ff9783;">HOMEWORK · END OF TOPIC 2, PART 1</span>
+      <span style="font-size: 26px; font-weight: 700; color: #bab6b6;">Due week 3, class 1</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: start;">
+      <div>
+        <h2 style="margin: 0 0 36px; font-size: 84px; font-weight: 900; line-height: 0.98; letter-spacing: -0.035em;">Before next class</h2>
+        <div style="display: flex; flex-direction: column; gap: 26px; font-size: 33px; line-height: 1.35;">
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">A</span><span>Finish the R lab and submit <strong>week02.R</strong> — commented, runs top to bottom without errors, with <code style="font-family: 'JetBrains Mono', monospace;">set.seed()</code> where anything is random.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">B</span><span>Read Newbold ch. 4.5–4.7 on conditional probability and Bayes, or OpenStax ch. 3.4–3.5.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">C</span><span>Problem set 2: eight counting problems on the course page. Show the reasoning, not only the number.</span></div>
+          <div style="display: flex; gap: 28px;"><span style="font-weight: 900; color: #ff9783;">D</span><span>Data project: load your dataset into R with <code style="font-family: 'JetBrains Mono', monospace;">read.csv()</code> and print <code style="font-family: 'JetBrains Mono', monospace;">summary()</code>. Bring the output.</span></div>
+        </div>
+      </div>
+      <div style="border-left: 2px solid #605d5d; padding-left: 48px;">
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9783; margin-bottom: 24px;">Next week</div>
+        <div style="font-size: 46px; font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px;">Week 3 — Conditional probability and Bayes</div>
+        <p style="margin: 0; font-size: 30px; line-height: 1.4; color: #d7d3d3;">Why a test that is "95% accurate" can still be wrong most of the time it fires. The most counter-intuitive — and most examined — reasoning in the course.</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 26px; font-weight: 600; color: #bab6b6; border-top: 2px solid #605d5d; padding-top: 24px;">
+      <span>Consultations: Thursday 14:00–18:00</span>
+      <span>STAT201 · Week 2 · Class 2</span>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>
