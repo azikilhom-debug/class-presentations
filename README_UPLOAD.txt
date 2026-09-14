@@ -1,14 +1,16 @@
-TIU STATISTICS — BILINGUAL DASHBOARD
+TIU Statistics bilingual dashboard — Russian improved version
 
-HOW IT WORKS
-1. Keep the Telegram bot Statistics button pointed to the SAME GitHub Pages Statistics URL.
-2. The root index.html now asks the student to choose a language.
-3. Statistics — English opens english/index.html (your current English dashboard).
-4. Статистика — русский opens russian/index.html (Russian dashboard).
+Upload/extract the CONTENTS of this ZIP into the same GitHub repository root.
 
-UPLOAD
-Extract this ZIP and upload the CONTENTS to the root of the existing Statistics GitHub repository.
-Keep the english/ and russian/ folders exactly as they are.
-Commit the changes.
+Root:
+- index.html = language selection page
+- english/ = current English Statistics dashboard and classes
+- russian/ = improved Russian Statistics dashboard and teaching presentations
 
-Important: you do NOT need to change the bot URL if it already points to the repository root / index.html.
+What changed in this version:
+- Russian Week 1 presentations were rewritten with clearer teaching logic.
+- Russian Week 2 and Week 3 presentations are now full lesson decks, not placeholders.
+- Russian dashboard is standalone and does not depend on missing support.js/ds-modernist files.
+- Slide navigation works with arrows, buttons and mobile swipe.
+
+After upload, commit changes and refresh GitHub Pages with Ctrl+F5.
