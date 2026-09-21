@@ -1,1 +1,147 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Statistics Fixed Package</title></head><body><h1>Statistics Fixed Package</h1><ul><li><a href="english/index.html">English classes</a></li><li><a href="russian/index.html">Russian classes</a></li><li><a href="combined/statistics-all-classes-en.pdf">Combined English PDF</a></li><li><a href="combined/statistics-all-classes-ru.pdf">Combined Russian PDF</a></li></ul></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TIU · STAT201</title>
+  <style>
+    :root{
+      --ink:#201e1d;
+      --paper:#f3f2f2;
+      --hot:#ec3013;
+      --deep:#ae1800;
+      --soft:#ffe0d9;
+      --muted:#605d5d;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      background:var(--paper);
+      color:var(--ink);
+      font-family:Arial,Helvetica,sans-serif;
+    }
+    .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      min-height:100vh;
+      border-left:2px solid var(--ink);
+      border-right:2px solid var(--ink);
+      background:var(--paper);
+    }
+    .top{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:18px 28px;
+      border-bottom:2px solid var(--ink);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+      min-height:calc(100vh - 54px);
+    }
+    .intro{
+      padding:48px 32px;
+      border-right:2px solid var(--ink);
+    }
+    .eyebrow,.weekno{
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--deep);
+    }
+    h1{
+      font-size:clamp(54px,8vw,100px);
+      line-height:.9;
+      margin:18px 0 22px;
+      text-transform:uppercase;
+      letter-spacing:-.04em;
+    }
+    .intro p{
+      font-size:19px;
+      line-height:1.45;
+      max-width:45ch;
+      color:#444;
+    }
+    .choices{
+      display:grid;
+      grid-template-rows:repeat(3,1fr);
+    }
+    .choice{
+      padding:32px;
+      text-decoration:none;
+      color:var(--ink);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      border-bottom:2px solid var(--ink);
+      transition:background .15s ease;
+    }
+    .choice:last-child{border-bottom:0}
+    .choice:hover{background:var(--soft)}
+    .choice h2{
+      font-size:clamp(28px,4vw,54px);
+      line-height:1;
+      margin:12px 0 18px;
+      letter-spacing:-.03em;
+    }
+    .choice .arrow{
+      font-size:16px;
+      font-weight:800;
+    }
+    @media(max-width:760px){
+      .wrap{border:0}
+      .top{padding:15px 18px;flex-direction:column;gap:6px}
+      .hero{grid-template-columns:1fr}
+      .intro{
+        border-right:0;
+        border-bottom:2px solid var(--ink);
+        padding:36px 22px;
+      }
+      .choice{padding:26px 22px}
+      .choices{grid-template-rows:auto}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <span>TIU · STAT201</span>
+      <span>Tashkent International University</span>
+    </div>
+
+    <div class="hero">
+      <section class="intro">
+        <div class="eyebrow">Statistics learning hub</div>
+        <h1>Choose<br>language</h1>
+        <p>One Statistics course with the same weekly slide design in Uzbek, Russian and English.</p>
+      </section>
+
+      <section class="choices">
+        <a class="choice" href="english/index.html">
+          <span class="weekno">01 · ENGLISH</span>
+          <h2>Statistics — English</h2>
+          <span class="arrow">Open English slides and weekly materials →</span>
+        </a>
+
+        <a class="choice" href="russian/index.html">
+          <span class="weekno">02 · РУССКИЙ</span>
+          <h2>Статистика — русский</h2>
+          <span class="arrow">Открыть русские слайды и материалы →</span>
+        </a>
+
+        <a class="choice" href="uzbek/index.html">
+          <span class="weekno">03 · O‘ZBEKCHA</span>
+          <h2>Statistika — o‘zbekcha</h2>
+          <span class="arrow">O‘zbekcha slaydlar va haftalik materiallar →</span>
+        </a>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
