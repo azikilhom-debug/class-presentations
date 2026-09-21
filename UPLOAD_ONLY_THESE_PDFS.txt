@@ -1,0 +1,10 @@
+STATISTICS EN/RU SAFE-BOUNDARY FIX
+
+This package contains only replacement PDFs, so it will NOT overwrite the main GitHub homepage.
+
+Upload/replace:
+- english/pdf/*.pdf -> repository english/pdf/
+- russian/pdf/*.pdf -> repository russian/pdf/
+- combined/*.pdf -> repository combined/ (optional)
+
+Fixed: lower charts/formula boxes now stay above the page boundary/footer, removing the clipped black-bottom-edge bug in browser/PDF viewers.
