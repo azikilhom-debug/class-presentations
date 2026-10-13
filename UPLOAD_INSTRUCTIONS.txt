@@ -1,0 +1,36 @@
+STAT201 - R HANDOOK (ENGLISH + RUSSIAN)
+========================================
+GitHub: https://github.com/azikilhom-debug/class-presentations
+
+This ZIP has been prepared using the CURRENT main GitHub index.html
+(not an older draft). The existing homepage stays the same, except for
+one new R Programming button opening a new tab.
+
+UPLOAD INSTRUCTIONS
+-------------------
+1. Download and EXTRACT this ZIP on your computer. GitHub will NOT
+   automatically unzip an uploaded ZIP file.
+2. Open the repository: https://github.com/azikilhom-debug/class-presentations
+3. Stay at the ROOT of the repository (do not go into english/ or russian/).
+4. Select Add file > Upload files.
+5. Drag/drop the extracted index.html and the entire r/ folder
+   (or use GitHub's folder upload via drag-and-drop). Make sure the paths
+   remain as shown below, not all files in the root.
+6. Commit the changes. GitHub may ask you to confirm replacing index.html.
+
+UPLOAD PATHS
+------------
+index.html               REPLACE the main index, adding one button only
+r/index.html             NEW language selection page
+r/english/index.html     NEW full English illustrated guide
+r/english/handbook.pdf   NEW full English PDF
+r/russian/index.html     NEW full Russian illustrated guide
+r/russian/handbook.pdf   NEW full Russian PDF
+
+Do NOT delete any existing files or folders.
+Do NOT replace english/index.html, russian/index.html, or uzbek/index.html.
+
+After deployment, open your existing GitHub Pages home URL and click
+"R Programming (EN / RU)" to verify the new language selection page.
+
+Author printed in the handbooks: Azizbek Ilkhomzoda.
